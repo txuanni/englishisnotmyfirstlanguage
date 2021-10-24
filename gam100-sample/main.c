@@ -1,8 +1,8 @@
 
 /*---------------------------------------------------------
- * file:	main.c
- * author:	[NAME]
- * email:	[DIGIPEN EMAIL ADDRESS]
+ * file:	Prototype
+ * author:	[David]
+ * email:	[tan.d@digipen.edu]
 *
  * brief:	Main entry point for the sample project
             * of the CProcessing library
@@ -115,7 +115,7 @@ void game_update(void)
 
 
 
-    CP_Graphics_ClearBackground(CP_Color_Create(255, 255, 255, 0));
+    CP_Graphics_ClearBackground(CP_Color_Create(0,0,0,0));
     CP_Settings_Fill(CP_Color_Create(150, 75, 0, 255));
     CP_Graphics_DrawRect(Box1.Position.x, Box1.Position.y, Box1.width, Box1.height);
     CP_Settings_Fill(CP_Color_Create(150, 75, 0, 150));
