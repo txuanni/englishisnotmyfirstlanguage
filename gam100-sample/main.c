@@ -114,7 +114,7 @@ void game_update(void)
     }
 
 
-
+    //Set white background
     CP_Graphics_ClearBackground(CP_Color_Create(0,0,0,0));
     CP_Settings_Fill(CP_Color_Create(150, 75, 0, 255));
     CP_Graphics_DrawRect(Box1.Position.x, Box1.Position.y, Box1.width, Box1.height);
