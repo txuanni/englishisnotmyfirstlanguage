@@ -1,8 +1,8 @@
 
 /*---------------------------------------------------------
  * file:	Prototype
- * author:	[David]
- * email:	[tan.d@digipen.edu]
+ * author:	
+ * email:	
 *
  * brief:	Main entry point for the sample project
             * of the CProcessing library
@@ -32,6 +32,7 @@ bool isFalling = false;
 bool isMoving = false;
 CP_Vector gravity;
 CP_Image mouseIdle, mouseMove1, mouseMove2, mouseDead;
+
 struct Box
 {
     CP_Vector Position;
@@ -40,18 +41,66 @@ struct Box
 };
 struct Box Box1, Box2;
 
-/*float collisionleft(CP_Vector topleft, CP_Vector btmleft)
+bool collisionleft(float playerx,CP_Vector Position ,float box_height)
 {
-    if(player_x + radius > topleft && player_x + radius > btmleft)
-}*/
+    if (playerx + radius >= Position.x + box_height)
+        return TRUE;
+    else
+        return FALSE;
+}
 
+bool collisionright(float playerx, CP_Vector Position, float box_height)
+{
+    if (playerx + radius <= Position.x + box_height)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool collisiontop(float playerx, CP_Vector Position, float box_width)
+{
+    if (playerx + radius >= Position.y + box_width)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool collisionbtm(float playerx, CP_Vector Position, float box_width)
+{
+    if (playerx + radius >= Position.x + box_width)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+float collision_check(float player, CP_Vector Position, float width, float height)
+{
+    if (player + radius >= Position.x + height)// check left collision
+    {
+        player = Position.x - radius;
+    }
+    if (player + radius <= Position.x + height)// check right collision
+    {
+        player = Position.x + radius;
+    }
+    if (player + radius >= Position.y)// check collision top
+    {
+        player = Position.y - radius;
+    }
+    if (player + radius >= Position.y + width)// check collision bottom
+    {
+        player = Position.y + radius;
+    }
+
+    return player;
+}
 void game_init(void)
 {
     CP_System_SetWindowSize(recommendedWidth, recommendedHeight);
     //setFrameRate(60.0f);
     
     //Start position
-    player_x = 20;
+    player_x = 2;
     player_y = 780;
     gravity = CP_Vector_Set(0.0, 100.0); //Set Gravity
 
@@ -160,11 +209,10 @@ void game_update(void)
     CP_Settings_Fill(CP_Color_Create(150, 75, 0, 150));
 
     CP_Graphics_DrawRect(Box2.Position.x, Box2.Position.y, Box2.width, Box2.height);
-    CP_Settings_Fill(CP_Color_Create(255, 0, 0, 255));
+    CP_Settings_Fill(CP_Color_Create(255, 0, 0, 150));
 
     //Mouse
-    //CP_Graphics_DrawCircle(player_x, player_y, 40);
-    CP_Image_Draw(mouseIdle, player_x, player_y, 40, 40, 120);
+    CP_Image_Draw(mouseIdle, player_x, player_y, 40, 40, 255);
 
 }
 
