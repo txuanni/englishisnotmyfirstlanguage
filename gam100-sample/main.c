@@ -1,14 +1,14 @@
 
 /*---------------------------------------------------------
  * file:	Prototype
- * author:	
- * email:	
+ * author:
+ * email:
 *
  * brief:	Main entry point for the sample project
             * of the CProcessing library
 *
  * documentation link:
- * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+ * https://github.com/DigiPen-Faculty/CProcessing/wiki
 *
  * Copyright © 2020 DigiPen, All rights reserved.
 * ---------------------------------------------------------*/
@@ -40,68 +40,25 @@ struct Box
     float width;
 };
 struct Box Box1, Box2;
-
-bool collisionleft(float playerx,CP_Vector Position ,float box_height)
+void deathcount(bool mouse)
 {
-    if (playerx + radius >= Position.x + box_height)
-        return TRUE;
-    else
-        return FALSE;
-}
 
-bool collisionright(float playerx, CP_Vector Position, float box_height)
-{
-    if (playerx + radius <= Position.x + box_height)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-bool collisiontop(float playerx, CP_Vector Position, float box_width)
-{
-    if (playerx + radius >= Position.y + box_width)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-bool collisionbtm(float playerx, CP_Vector Position, float box_width)
-{
-    if (playerx + radius >= Position.x + box_width)
-        return TRUE;
-    else
-        return FALSE;
-}
-
-float collision_check(float player, CP_Vector Position, float width, float height)
-{
-    if (player + radius >= Position.x + height)// check left collision
+    //if (mouse == FALSE)
     {
-        player = Position.x - radius;
-    }
-    if (player + radius <= Position.x + height)// check right collision
-    {
-        player = Position.x + radius;
-    }
-    if (player + radius >= Position.y)// check collision top
-    {
-        player = Position.y - radius;
-    }
-    if (player + radius >= Position.y + width)// check collision bottom
-    {
-        player = Position.y + radius;
-    }
 
-    return player;
+        //int deathcount;
+       // deathcount++;
+
+    }
 }
 void game_init(void)
 {
     CP_System_SetWindowSize(recommendedWidth, recommendedHeight);
     //setFrameRate(60.0f);
-    
+
     //Start position
-    player_x = 2;
-    player_y = 780;
+    player_x = 20;
+    player_y = 710;
     gravity = CP_Vector_Set(0.0, 100.0); //Set Gravity
 
     //(Left) Box1 Elements
@@ -140,16 +97,16 @@ void game_update(void)
     player_y += gravity.y * CP_System_GetDt();
 
 
-    if (player_x > Box1.Position.x && 
-        player_x < Box1.Position.x + Box1.width && 
-        player_y > Box1.Position.y - radius - 10 && 
+    if (player_x > Box1.Position.x &&
+        player_x < Box1.Position.x + Box1.width &&
+        player_y > Box1.Position.y - radius - 10 &&
         player_y < Box1.Position.y + Box1.height)
     {
         isJumping = false;
 
-        if (player_x >= Box1.Position.x && 
-            player_x <= Box1.Position.x + Box1.width && 
-            player_y > Box1.Position.y && 
+        if (player_x >= Box1.Position.x &&
+            player_x <= Box1.Position.x + Box1.width &&
+            player_y > Box1.Position.y &&
             player_y < Box1.Position.y + Box1.height)
         {
             if (player_x + radius < Box1.Position.x)
@@ -170,9 +127,9 @@ void game_update(void)
     }
 
 
-    if ((player_x > Box2.Position.x && 
-        player_x < Box2.Position.x + Box2.width && 
-        player_y > Box2.Position.y - radius && 
+    if ((player_x > Box2.Position.x &&
+        player_x < Box2.Position.x + Box2.width &&
+        player_y > Box2.Position.y - radius &&
         player_y < Box2.Position.y + Box2.height))
     {
         player_y = Box2.Position.y - radius;
@@ -193,16 +150,26 @@ void game_update(void)
         player_y -= playerjump * CP_System_GetDt();
         playerjump -= gravity.y;
     }
-    
+
     //Code for if mouse is moving
     if (isMoving)
     {
 
     }
 
+    char deathcount[999];
+    sprintf_s(deathcount, sizeof(deathcount) / sizeof(deathcount[0]), "%d", 42);
+
+    //set death count
+    CP_TEXT_ALIGN_HORIZONTAL horizontal = CP_TEXT_ALIGN_H_CENTER;
+    CP_TEXT_ALIGN_VERTICAL vertical = CP_TEXT_ALIGN_V_MIDDLE;
+    CP_Image_Draw(mouseIdle, 20, 80, 40, 40, 255);
+    CP_Font_DrawText(deathcount, 80, 80);
+    CP_Settings_TextAlignment(horizontal, vertical);
+    CP_Settings_TextSize(60);
 
     //Set white background
-    CP_Graphics_ClearBackground(CP_Color_Create(0,0,0,0));
+    CP_Graphics_ClearBackground(CP_Color_Create(0, 0, 0, 0));
     CP_Settings_Fill(CP_Color_Create(150, 75, 0, 255));
 
     CP_Graphics_DrawRect(Box1.Position.x, Box1.Position.y, Box1.width, Box1.height);
@@ -229,3 +196,4 @@ int main(void)
     CP_Engine_Run();
     return 0;
 }
+
