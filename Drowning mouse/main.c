@@ -24,23 +24,29 @@
 #define recommendedHeight 900
 #define range 5
 #define radius 20
-float playerjump;
-float player_x;
-float player_y;
+#define buffer 20
 bool isJumping = false;
 bool isFalling = false;
 bool isMoving = false;
 CP_Vector gravity;
 CP_Image mouseIdle, mouseMove1, mouseMove2, mouseDead;
 
-struct Box
+typedef struct _player
+{
+    CP_Vector position;
+    float playerjump;
+    CP_Vector player_velocity;
+}player;
+player mouse;
+
+typedef struct Box
 {
     CP_Vector Position;
     float height;
     float width;
-};
+}box;
 struct Box Box1, Box2;
-void deathcount(bool mouse)
+void deathcount(bool dead)
 {
 
     //if (mouse == FALSE)
@@ -51,14 +57,21 @@ void deathcount(bool mouse)
 
     }
 }
+
+bool collision(CP_Vector bowser, box block)
+{
+    if (bowser.x + buffer>= block.Position.x && bowser.y + buffer >= block.Position.y &&
+        bowser.x + buffer <= block.Position.x + block.width && bowser.y + buffer <= block.Position.y + block.height)
+        return TRUE;
+    else return FALSE;
+}
 void game_init(void)
 {
     CP_System_SetWindowSize(recommendedWidth, recommendedHeight);
     //setFrameRate(60.0f);
     
     //Start position
-    player_x = 20;
-    player_y = 710;
+    mouse.position = CP_Vector_Set(20.0, 710.0);
     gravity = CP_Vector_Set(0.0, 100.0); //Set Gravity
 
     //(Left) Box1 Elements
@@ -84,56 +97,35 @@ void game_update(void)
     //Left Movement
     if (CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT))
     {
-        player_x -= 10;
+        mouse.player_velocity.x = -500.0;
+        //mouse.position.x += mouse.player_velocity;
     }
 
     //Right Movement
     if (CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT))
     {
-        player_x += 10;
+        mouse.player_velocity.x = 500.0;
     }
 
     //Gravity is always on player
-    player_y += gravity.y * CP_System_GetDt();
-
-
-    if (player_x > Box1.Position.x && 
-        player_x < Box1.Position.x + Box1.width && 
-        player_y > Box1.Position.y - radius - 10 && 
-        player_y < Box1.Position.y + Box1.height)
+    mouse.player_velocity.y += gravity.y;
+    mouse.position.x += mouse.player_velocity.x * CP_System_GetDt();
+    mouse.position.y += mouse.player_velocity.y * CP_System_GetDt();
+    // collision check monkaS
+    if (collision(mouse.position ,  Box1))
     {
+        mouse.position.y = Box1.Position.y - buffer;
         isJumping = false;
-
-        if (player_x >= Box1.Position.x && 
-            player_x <= Box1.Position.x + Box1.width && 
-            player_y > Box1.Position.y && 
-            player_y < Box1.Position.y + Box1.height)
-        {
-            if (player_x + radius < Box1.Position.x)
-            {
-                player_x = Box1.Position.x - radius;
-            }
-            else if (player_x - radius < Box1.Position.x + Box1.width)
-            {
-                player_x = Box1.Position.x + Box1.width + radius;
-            }
-
-        }
-        else if (player_y + radius > Box1.Position.y)
-        {
-            player_y = Box1.Position.y - radius;
-        }
-
     }
-
-
-    if ((player_x > Box2.Position.x && 
-        player_x < Box2.Position.x + Box2.width && 
-        player_y > Box2.Position.y - radius && 
-        player_y < Box2.Position.y + Box2.height))
+    if (collision(mouse.position, Box2))
     {
-        player_y = Box2.Position.y - radius;
+        mouse.position.y = Box2.Position.y - buffer;
         isJumping = false;
+    }
+    if (CP_Input_KeyReleased(KEY_D)|| CP_Input_KeyReleased(KEY_RIGHT) ||
+        CP_Input_KeyReleased(KEY_A) || CP_Input_KeyReleased(KEY_LEFT))
+    {
+        mouse.player_velocity.x = 0;
     }
 
 
@@ -141,15 +133,15 @@ void game_update(void)
     if (CP_Input_KeyTriggered(KEY_SPACE) && isJumping == false)
     {
         isJumping = true;
-        playerjump = 1000;
+        mouse.player_velocity.y = -1000;
     }
 
     //Code for jumping
-    if (isJumping)
+    /* if (isJumping)
     {
-        player_y -= playerjump * CP_System_GetDt();
-        playerjump -= gravity.y;
-    }
+        mouse.position.y -= mouse.playerjump * CP_System_GetDt();
+        mouse.playerjump -= gravity.y;
+    } */
     
     //Code for if mouse is moving
     if (isMoving)
@@ -179,7 +171,7 @@ void game_update(void)
     CP_Settings_Fill(CP_Color_Create(255, 0, 0, 150));
 
     //Mouse
-    CP_Image_Draw(mouseIdle, player_x, player_y, 40, 40, 255);
+    CP_Image_Draw(mouseIdle, mouse.position.x, mouse.position.y, 40, 40, 255);
 
 }
 
