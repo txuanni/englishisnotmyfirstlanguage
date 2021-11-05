@@ -31,7 +31,8 @@ bool isJumping = false;
 bool isFalling = false;
 bool isMoving = false;
 CP_Vector gravity;
-CP_Image mouseIdle, mouseMove1, mouseMove2, mouseDead;
+CP_Image mouseIdle, mouseMoveRight1, mouseMoveRight2
+, mouseMoveLeft1, mouseMoveLeft2, mouseDead;
 
 struct Box
 {
@@ -39,7 +40,9 @@ struct Box
     float height;
     float width;
 };
+
 struct Box Box1, Box2;
+
 void deathcount(bool mouse)
 {
 
@@ -51,6 +54,7 @@ void deathcount(bool mouse)
 
     }
 }
+
 void game_init(void)
 {
     CP_System_SetWindowSize(recommendedWidth, recommendedHeight);
@@ -73,24 +77,40 @@ void game_init(void)
 
     //Mouse Images
     mouseIdle = CP_Image_Load("./Assets/idle.png");
-    mouseMove1 = CP_Image_Load("./Assets/walk_1.png");
-    mouseMove2 = CP_Image_Load("./Assets/walk_2.png");
+    mouseMoveRight1 = CP_Image_Load("./Assets/walk_1.png");
+    mouseMoveRight2 = CP_Image_Load("./Assets/walk_2.png");
+    mouseMoveLeft1 = CP_Image_Load("./Assets/walk_1_left.png");
+    mouseMoveLeft2 = CP_Image_Load("./Assets/walk_2_left.png");
     mouseDead = CP_Image_Load("./Assets/die.png");
+
+    
 
 }
 
 void game_update(void)
 {
+    CP_Image moveRightArray[] = {mouseMoveRight1, mouseMoveRight2};
+    CP_Image moveLeftArray[] = {mouseMoveLeft1, mouseMoveLeft2};
     //Left Movement
     if (CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT))
     {
         player_x -= 10;
+        
+
+        for (int i = 0; i < 2; i++) {
+            CP_Image_Draw(moveLeftArray[i], player_x, player_y-30, 90, 90, 120);
+        }
+        
     }
 
     //Right Movement
     if (CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT))
     {
         player_x += 10;
+        for (int i = 0; i < 2; i++) {
+            CP_Image_Draw(moveRightArray[i], player_x, player_y-30, 90, 90, 120);
+        }
+        
     }
 
     //Gravity is always on player
@@ -163,10 +183,11 @@ void game_update(void)
     //set death count
     CP_TEXT_ALIGN_HORIZONTAL horizontal = CP_TEXT_ALIGN_H_CENTER;
     CP_TEXT_ALIGN_VERTICAL vertical = CP_TEXT_ALIGN_V_MIDDLE;
-    CP_Image_Draw(mouseIdle, 20, 80, 40, 40, 255);
+    
     CP_Font_DrawText(deathcount, 80, 80);
     CP_Settings_TextAlignment(horizontal, vertical);
     CP_Settings_TextSize(60);
+    CP_Image_Draw(mouseIdle, 20, 80, 40, 40, 120);
 
     //Set white background
     CP_Graphics_ClearBackground(CP_Color_Create(0,0,0,0));
@@ -179,7 +200,7 @@ void game_update(void)
     CP_Settings_Fill(CP_Color_Create(255, 0, 0, 150));
 
     //Mouse
-    CP_Image_Draw(mouseIdle, player_x, player_y, 40, 40, 255);
+    CP_Image_Draw(mouseIdle, player_x, player_y, 90, 90, 120);
 
 }
 
