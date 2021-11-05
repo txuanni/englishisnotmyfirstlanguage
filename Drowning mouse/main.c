@@ -95,22 +95,12 @@ void game_update(void)
     if (CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT))
     {
         player_x -= 10;
-        
-
-        for (int i = 0; i < 2; i++) {
-            CP_Image_Draw(moveLeftArray[i], player_x, player_y-30, 90, 90, 120);
-        }
-        
     }
 
     //Right Movement
     if (CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT))
     {
         player_x += 10;
-        for (int i = 0; i < 2; i++) {
-            CP_Image_Draw(moveRightArray[i], player_x, player_y-30, 90, 90, 120);
-        }
-        
     }
 
     //Gravity is always on player
@@ -200,7 +190,7 @@ void game_update(void)
     CP_Settings_Fill(CP_Color_Create(255, 0, 0, 150));
 
     //Mouse
-    CP_Image_Draw(mouseIdle, player_x, player_y, 90, 90, 120);
+    CP_Image_Draw(mouseIdle, player_x, player_y, 40, 40, 255);
 
 }
 
