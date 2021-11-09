@@ -37,6 +37,8 @@ typedef struct _player
     CP_Vector position;
     float playerjump;
     CP_Vector player_velocity;
+    bool faceLeft;
+    bool faceRight;
 }player;
 player mouse;
 
@@ -45,17 +47,12 @@ typedef struct Box
     CP_Vector Position;
     float height;
     float width;
-<<<<<<< HEAD
-};
-
-struct Box Box1, Box2;
-
-void deathcount(bool mouse)
-=======
 }box;
 struct Box Box1, Box2;
+
+struct Box Box1, Box2;
+
 void deathcount(bool dead)
->>>>>>> a7aa2593252ace1ebbb082a1e4987f19ba042b23
 {
 
     //if (mouse == FALSE)
@@ -66,25 +63,60 @@ void deathcount(bool dead)
 
     }
 }
-
-<<<<<<< HEAD
-=======
+// Box based collision
 bool collision(CP_Vector bowser, box block)
 {
-    if (bowser.x + buffer>= block.Position.x && bowser.y + buffer >= block.Position.y &&
-        bowser.x + buffer <= block.Position.x + block.width && bowser.y + buffer <= block.Position.y + block.height)
+    if ((bowser.x + buffer) <= (block.Position.x + block.width) && (bowser.x + buffer) >= block.Position.x &&
+        (bowser.y + buffer) <= (block.Position.y + block.height) && (bowser.y + buffer) >= block.Position.y)
+    {
         return TRUE;
-    else return FALSE;
+    }
+    else
+    {
+        return FALSE;
+    }
 }
->>>>>>> a7aa2593252ace1ebbb082a1e4987f19ba042b23
+
+void collision_check(CP_Vector *bowser, box block)
+{
+    CP_Vector tmp;
+    tmp = *bowser;
+    if(bowser->y + buffer >= block.Position.y  && bowser->x >= block.Position.x && bowser->x <= block.Position.x + block.width)//top
+    {
+        tmp.y = block.Position.y - buffer;
+        isJumping = FALSE;
+    }
+    else if(bowser->y + buffer  <= block.Position.y + block.height && bowser->x >= block.Position.x && bowser->x <= block.Position.x + block.width)//btm
+    {
+         tmp.y = block.Position.y + block.height + buffer;
+         isJumping = FALSE;
+
+    }
+    if (bowser->x + buffer >= block.Position.x &&
+    bowser->y >= block.Position.y && bowser->y <= block.Position.y + block.height)//left
+    {
+    tmp.x = block.Position.x - buffer;
+    bowser->x = tmp.x;
+    bowser->y = tmp.y;
+    }
+    else if (bowser->x + buffer <= block.Position.x + block.width &&
+    bowser->y >= block.Position.y && bowser->y <= block.Position.y + block.height)//right
+    {
+    tmp.x = block.Position.x + block.width + buffer;
+    bowser->y = tmp.y;
+    }
+    *bowser = tmp;
+}
+
+
 void game_init(void)
 {
     CP_System_SetWindowSize(recommendedWidth, recommendedHeight);
     //setFrameRate(60.0f);
     
     //Start position
-    mouse.position = CP_Vector_Set(20.0, 710.0);
-    gravity = CP_Vector_Set(0.0, 100.0); //Set Gravity
+    mouse.position = CP_Vector_Set(20.0, 700.0);
+    gravity = CP_Vector_Set(0.0, 750.0); //Set Gravity
 
     //(Left) Box1 Elements
     Box1.Position = CP_Vector_Set(0.0, 800.0);
@@ -92,9 +124,9 @@ void game_init(void)
     Box1.height = 600;
 
     //(Right) Box 2 Elements
-    Box2.Position = CP_Vector_Set(800, 800);
-    Box2.width = 900;
-    Box2.height = 600;
+    Box2.Position = CP_Vector_Set(300.0, 700);
+    Box2.width = 200;
+    Box2.height = 90;
 
     //Mouse Images
     mouseIdle = CP_Image_Load("./Assets/idle.png");
@@ -110,89 +142,109 @@ void game_init(void)
 
 void game_update(void)
 {
-    CP_Image moveRightArray[] = {mouseMoveRight1, mouseMoveRight2};
-    CP_Image moveLeftArray[] = {mouseMoveLeft1, mouseMoveLeft2};
-    //Left Movement
+    //Left and Right Movement
     if (CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT))
     {
-        mouse.player_velocity.x = -500.0;
-        //mouse.position.x += mouse.player_velocity;
+        mouse.player_velocity.x = -200.0;
+        mouse.faceLeft = 1;
     }
-
-    //Right Movement
-    if (CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT))
+    else if (CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT))
     {
-        mouse.player_velocity.x = 500.0;
+        mouse.player_velocity.x = 200.0;
+        mouse.faceRight = 1;
     }
-
-    //Gravity is always on player
-    mouse.player_velocity.y += gravity.y;
-    mouse.position.x += mouse.player_velocity.x * CP_System_GetDt();
-    mouse.position.y += mouse.player_velocity.y * CP_System_GetDt();
-    // collision check monkaS
-    if (collision(mouse.position ,  Box1))
+    else
     {
-        mouse.position.y = Box1.Position.y - buffer;
-        isJumping = false;
-    }
-    if (collision(mouse.position, Box2))
-    {
-        mouse.position.y = Box2.Position.y - buffer;
-        isJumping = false;
-    }
-    if (CP_Input_KeyReleased(KEY_D)|| CP_Input_KeyReleased(KEY_RIGHT) ||
-        CP_Input_KeyReleased(KEY_A) || CP_Input_KeyReleased(KEY_LEFT))
-    {
+        //No input, go to idle
+        mouse.faceRight = 0;
+        mouse.faceLeft = 0;
         mouse.player_velocity.x = 0;
     }
 
-
-    //Set spacebar to jump
-    if (CP_Input_KeyTriggered(KEY_SPACE) && isJumping == false)
+    //Gravity is always on player
+    mouse.player_velocity.y += gravity.y * CP_System_GetDt();
+    if (mouse.player_velocity.y > 250)
     {
-        isJumping = true;
-        mouse.player_velocity.y = -1000;
+        mouse.player_velocity.y = 250;
+    }
+    mouse.position.x += mouse.player_velocity.x * CP_System_GetDt();
+
+    // jump movement
+    mouse.position.y += mouse.player_velocity.y * CP_System_GetDt();
+    
+    // collision check monkaS
+    if (collision(mouse.position, Box1))
+    {
+        collision_check(&mouse.position, Box1);
+    }
+    printf("%.2f , %.2f\n", mouse.position.x, mouse.position.y);
+
+    if (collision(mouse.position, Box2))
+    {
+        collision_check(&mouse.position, Box2);
     }
 
-    //Code for jumping
-    /* if (isJumping)
-    {
-        mouse.position.y -= mouse.playerjump * CP_System_GetDt();
-        mouse.playerjump -= gravity.y;
-    } */
-    
-    //Code for if mouse is moving
-    if (isMoving)
-    {
+        //Set spacebar to jump
+        if (CP_Input_KeyTriggered(KEY_SPACE) && isJumping == false)
+        {
+            isJumping = true;
+            mouse.player_velocity.y = -400;
+        }
+
+        //Code for if mouse is moving
+        if (isMoving)
+        {
+
+        }
+
+        char deathcount[999];
+        sprintf_s(deathcount, sizeof(deathcount) / sizeof(deathcount[0]), "%d", 42);
+        // mouse render for left and right
+    CP_Image moveRightArray[] = { mouseMoveRight1, mouseMoveRight2 };
+    CP_Image moveLeftArray[] = { mouseMoveLeft1, mouseMoveLeft2 };
+        if (mouse.faceLeft == 1) //Face left
+        {
+            for (int i = 0; i < 2; i++) {
+                CP_Image_Draw(moveLeftArray[i], mouse.position.x, mouse.position.y
+                    , 40, 40, 120);
+            }
+        }
+        else if (mouse.faceRight == 1) //Face right
+        {
+            for (int i = 0; i < 2; i++) {
+                CP_Image_Draw(moveRightArray[i], mouse.position.x, mouse.position.y
+                    , 40, 40, 120);
+            }
+        }
+        else //Idle
+        {
+            CP_Image_Draw(mouseIdle, mouse.position.x, mouse.position.y, 40, 40, 255);
+        }
+
+        //set death count
+        CP_TEXT_ALIGN_HORIZONTAL horizontal = CP_TEXT_ALIGN_H_CENTER;
+        CP_TEXT_ALIGN_VERTICAL vertical = CP_TEXT_ALIGN_V_MIDDLE;
+
+        CP_Font_DrawText(deathcount, 80, 80);
+        CP_Settings_TextAlignment(horizontal, vertical);
+        CP_Settings_TextSize(60);
+        CP_Image_Draw(mouseIdle, 20, 80, 40, 40, 120);
+
+        //Set white background
+        CP_Graphics_ClearBackground(CP_Color_Create(0, 0, 0, 0));
+        CP_Settings_Fill(CP_Color_Create(150, 75, 0, 255));
+
+        CP_Graphics_DrawRect(Box1.Position.x, Box1.Position.y, Box1.width, Box1.height);
+        CP_Settings_Fill(CP_Color_Create(150, 75, 0, 150));
+
+        CP_Graphics_DrawRect(Box2.Position.x, Box2.Position.y, Box2.width, Box2.height);
+        CP_Settings_Fill(CP_Color_Create(255, 0, 0, 150));
+
+        //Mouse
+        CP_Image_Draw(mouseIdle, mouse.position.x, mouse.position.y, 40, 40, 255);
 
     }
 
-    char deathcount[999];
-    sprintf_s(deathcount,sizeof(deathcount)/sizeof(deathcount[0]),"%d", 42);
-
-    //set death count
-    CP_TEXT_ALIGN_HORIZONTAL horizontal = CP_TEXT_ALIGN_H_CENTER;
-    CP_TEXT_ALIGN_VERTICAL vertical = CP_TEXT_ALIGN_V_MIDDLE;
-    
-    CP_Font_DrawText(deathcount, 80, 80);
-    CP_Settings_TextAlignment(horizontal, vertical);
-    CP_Settings_TextSize(60);
-    CP_Image_Draw(mouseIdle, 20, 80, 40, 40, 120);
-
-    //Set white background
-    CP_Graphics_ClearBackground(CP_Color_Create(0,0,0,0));
-    CP_Settings_Fill(CP_Color_Create(150, 75, 0, 255));
-
-    CP_Graphics_DrawRect(Box1.Position.x, Box1.Position.y, Box1.width, Box1.height);
-    CP_Settings_Fill(CP_Color_Create(150, 75, 0, 150));
-
-    CP_Graphics_DrawRect(Box2.Position.x, Box2.Position.y, Box2.width, Box2.height);
-    CP_Settings_Fill(CP_Color_Create(255, 0, 0, 150));
-
-    //Mouse
-    CP_Image_Draw(mouseIdle, mouse.position.x, mouse.position.y, 40, 40, 255);
-
-}
 
 
 void game_exit(void)
