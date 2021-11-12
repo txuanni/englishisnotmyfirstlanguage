@@ -5,7 +5,7 @@
 #define mouse_size 90
 
 static const float SCALE = 3.0f;
-static const float PAN = 100.0f;
+static const float PAN = 200.0f;
 
 static float currentScale;
 
@@ -18,10 +18,11 @@ CP_Image mouseCamera = NULL;
 void camera_init(void)
 {
 	scaleMatrix = CP_Matrix_Identity();
-	currentScale = 1.0f;
+	currentScale = 5.0f;
 
-	float centerX = CP_System_GetWindowWidth() / 2.0f;
-	float centerY = CP_System_GetWindowHeight() / 2.0f;
+	float centerX = 150.0f;
+	float centerY = 650.0f;
+
 	centerOffset = CP_Vector_Set(centerX, centerY);
 	currentPosition = CP_Vector_Zero();
 	translationMatrix = CP_Matrix_Translate(currentPosition);
