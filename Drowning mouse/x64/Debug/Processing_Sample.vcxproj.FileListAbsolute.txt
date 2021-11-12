@@ -1,4 +1,0 @@
-C:\Users\david\Documents\Gotta fix my depression\Version 1\x64\Debug\Processing_Sample.exe
-C:\Users\david\Documents\Gotta fix my depression\Drowning mouse\x64\Debug\Processing_Sample.exe
-D:\Github\englishisnotmyfirstlanguage\Drowning mouse\x64\Debug\Processing_Sample.exe
-C:\Users\david\Documents\GitHub\englishisnotmyfirstlanguage\Drowning mouse\x64\Debug\Processing_Sample.exe
