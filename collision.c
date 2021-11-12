@@ -41,5 +41,5 @@ void collision_check_cheese(CP_Vector player, CP_Vector cheese, CP_Vector cheese
 
 void collision_check_terrain(CP_Vector player, CP_Vector terrain, CP_Vector terrainbuffer)
 {
-    //TODO: Terrain collision
+    //TODO: Terrain collision, call in .h too~.
 }
