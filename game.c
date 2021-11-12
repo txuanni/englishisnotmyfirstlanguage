@@ -4,8 +4,9 @@
 #include "cheese.h"
 #include "platform.h"
 #include "terrain.h"
-#include "camera.h"
+#include "traps.h"
 #include "collision.h"
+#include "camera.h"
 
 #define recommendedWidth 1600
 #define recommendedHeight 900
@@ -25,6 +26,7 @@ void game_init(void)
 	mouse_init();
 	terrain_init();
 	cheese_init();
+	traps_init();
 	camera_init();
 }
 void game_update(void)
@@ -34,6 +36,7 @@ void game_update(void)
 	camera_update();
 	spawn_platform();
 	spawn_terrain();
+	spawn_traps();
 	spawn_cheese();
 	spawn_mouse();
 
