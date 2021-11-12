@@ -1,6 +1,5 @@
 #include "cprocessing.h"
 
-
 CP_Vector platformPosition;
 CP_Vector platformSize;
 CP_Vector platformBuffer;
