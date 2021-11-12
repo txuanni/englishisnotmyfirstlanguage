@@ -3,6 +3,9 @@
 #include "player.h"
 #include "cheese.h"
 #include "platform.h"
+#include "terrain.h"
+#include "camera.h"
+#include "collision.h"
 
 #define recommendedWidth 1600
 #define recommendedHeight 900
