@@ -3,6 +3,7 @@
 #include "player.h"
 #include "cheese.h"
 #include "platform.h"
+#include "camera.h"
 
 
 #define recommendedWidth 1600
@@ -22,12 +23,13 @@ void game_init(void)
 	platform_init();
 	mouse_init();
 	cheese_init();
+	camera_init();
 }
 void game_update(void)
 {
 	CP_Graphics_ClearBackground(CP_Color_Create(255, 255, 255, 255));
 	timeElapsed = CP_System_GetDt();
-
+	camera_update();
 	spawn_platform();
 	spawn_cheese();
 	spawn_mouse();

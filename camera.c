@@ -33,15 +33,15 @@ void camera_init(void)
 void camera_update(void)
 {
 	float dt = CP_System_GetDt();
-
-	if (CP_Input_KeyDown(KEY_UP) || CP_Input_KeyDown(KEY_W))
+	/*if (CP_Input_KeyDown(KEY_UP) || CP_Input_KeyDown(KEY_W))
 	{
 		currentPosition.y += dt * PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
 		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
-	}
+	}*/
+	
 
-	else if (CP_Input_KeyDown(KEY_RIGHT) || CP_Input_KeyDown(KEY_D))
+	if (CP_Input_KeyDown(KEY_RIGHT) || CP_Input_KeyDown(KEY_D))
 	{
 		currentPosition.x += dt * -PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
