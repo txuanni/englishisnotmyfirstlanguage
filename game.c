@@ -18,6 +18,7 @@ CP_Vector cheesePosition;
 CP_Vector cheeseBuffer;
 
 struct sceneManager game;
+struct sceneManager startpage;
 
 float timeElapsed;
 
@@ -31,7 +32,8 @@ void game_init(void)
 	traps_init();
 	camera_init();
 	
-	sceneManger_init(&game);
+	gamePage_init(&game);
+	//startPage_init(&startpage);
 }
 void game_update(void)
 {
@@ -39,6 +41,8 @@ void game_update(void)
 	timeElapsed = CP_System_GetDt();
 
 	draw_background(&game);
+	//draw_backgroundUI(&startpage);
+
 	camera_update();
 	spawn_platform();
 	spawn_terrain();
