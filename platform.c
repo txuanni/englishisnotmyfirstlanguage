@@ -8,9 +8,9 @@ CP_Image platformImage = NULL;
 
 void platform_init(void)
 {
-	platformPosition = CP_Vector_Set(800, 850);
-	platformSize = CP_Vector_Set(1610, 210);
-	platformBuffer = CP_Vector_Set(805, 105);
+	platformPosition = CP_Vector_Set(500, 800);
+	platformSize = CP_Vector_Set(1000, 100);
+	platformBuffer = CP_Vector_Set(500, 50);
 	platformImage = CP_Image_Load("./Assets/platform.png");
 }
 
