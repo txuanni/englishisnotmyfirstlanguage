@@ -4,8 +4,7 @@ struct sceneManager {
 	CP_Vector backgroundSize;
 	CP_Image backgroundImage;
 };
+struct sceneManager scene;
 
-void gamePage_init(struct sceneManager* game);
-void startPage_init(struct sceneManager* startpage);
+void sceneManger_init(struct sceneManager* game);
 void draw_background(struct sceneManager* game);
-void draw_backgroundUI(struct sceneManager* startpage);
