@@ -1,6 +1,6 @@
 #include "cprocessing.h"
 #include <stdio.h>
-
+#include "collision.h"
 #define mouse_buffer 45
 
 CP_Vector playerVelocity;
@@ -23,6 +23,19 @@ void collision_check_platform(CP_Vector player, CP_Vector platform, CP_Vector pl
         printf("colliding with platform\n");
         isJumping = 0;
         playerVelocity.y = 0;
+    
+        if (player.x + mouse_buffer > platform.x - platformbuffer.x
+        && player.y - mouse_buffer > platform.y - platformbuffer.y && player.y + mouse_buffer < platform.y + platformbuffer.y) //right???? 
+        {
+            isJumping = 1;
+            playerVelocity.x = -400;
+            //playerPosition.y -= (playerVelocity.y * timeElapsed);
+        }
+        else if(player.x - mouse_buffer > platform.x + platformbuffer.x 
+            && player.y  )
+        {
+            ;
+        }
     }
     else
     {
@@ -41,5 +54,6 @@ void collision_check_cheese(CP_Vector player, CP_Vector cheese, CP_Vector cheese
 
 void collision_check_terrain(CP_Vector player, CP_Vector terrain, CP_Vector terrainbuffer)
 {
-    //TODO: Terrain collision, call in .h too~.
+    //TODO: Terrain collision
 }
+
