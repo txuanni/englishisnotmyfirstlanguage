@@ -9,6 +9,8 @@ CP_Image mouseImage = NULL;
 CP_Vector playerVelocity;
 CP_Vector playerGravity;
 CP_Vector playerPosition;
+int isLeft = 0;
+int isRight = 0;
 
 float timeElapsed;
 int isJumping; //Jumping flag
@@ -31,11 +33,13 @@ void mouse_movement(void)
     if (CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT))
     {
         playerVelocity.x = -200;
+        isLeft = 1;
     }
 
     else if (CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT))
     {
         playerVelocity.x = 200;
+        isRight = 1;
         //playerPosition.x += (playerVelocity.x * timeElapsed);
     }
 

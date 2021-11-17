@@ -16,6 +16,7 @@ CP_Vector platformPosition;
 CP_Vector platformBuffer;
 CP_Vector cheesePosition;
 CP_Vector cheeseBuffer;
+CP_Vector player, terrain, terrainbuffer;
 
 struct sceneManager game;
 
@@ -49,6 +50,7 @@ void game_update(void)
 	mouse_movement();
 	collision_check_platform(playerPosition, platformPosition, platformBuffer);
 	collision_check_cheese(playerPosition, cheesePosition, cheeseBuffer);
+	collision_check_terrain(player, terrain, terrainbuffer);
 }
 void game_exit(void)
 {

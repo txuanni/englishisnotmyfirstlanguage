@@ -7,7 +7,7 @@ CP_Image terrainImage = NULL;
 
 void terrain_init(void)
 {
-	terrainPosition = CP_Vector_Set(700, 600);
+	terrainPosition = CP_Vector_Set(700, 650);
 	terrainSize = CP_Vector_Set(130, 40);
 	terrainBuffer = CP_Vector_Set(805, 105);
 	terrainImage = CP_Image_Load("./Assets/terrain.png");

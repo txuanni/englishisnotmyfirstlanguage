@@ -7,6 +7,8 @@ CP_Vector playerVelocity;
 CP_Vector playerGravity;
 
 int isJumping; //Jumping flag
+int isLeft;
+int isRight;
 float timeElapsed;
 
 
@@ -18,23 +20,36 @@ int is_colliding(CP_Vector player, CP_Vector object, CP_Vector buffer)
 
 void collision_check_platform(CP_Vector player, CP_Vector platform, CP_Vector platformbuffer)
 {
+    CP_Vector intersection;
     if (is_colliding(player, platform, platformbuffer))
     {
-        printf("colliding with platform\n");
-        isJumping = 0;
-        playerVelocity.y = 0;
-    
-        if (player.x + mouse_buffer > platform.x - platformbuffer.x
-        && player.y - mouse_buffer > platform.y - platformbuffer.y && player.y + mouse_buffer < platform.y + platformbuffer.y) //right???? 
+        if (player.y + mouse_buffer >= platform.y - platformbuffer.y) //top collision?
         {
-            isJumping = 1;
-            playerVelocity.x = -400;
-            //playerPosition.y -= (playerVelocity.y * timeElapsed);
+            playerVelocity.y = 0;// add position of player to -0.5
+            intersection.y = (player.y + mouse_buffer) - (platform.y - platformbuffer.y);
+            player.y = player.y - intersection.y;
+            //if u press spacebar and it is colliding with the floor then u add jumping velocity to player
+            printf("%3f", player.y);
+            isJumping = 0;
         }
-        else if(player.x - mouse_buffer > platform.x + platformbuffer.x 
-            && player.y  )
+        else if (player.y - mouse_buffer < platform.y + platformbuffer.y) //btm collision?
         {
-            ;
+            playerVelocity.y = 0;
+            intersection.y = (platform.y + platformbuffer.y) - (player.y - mouse_buffer);
+            player.y = player.y + intersection.y;
+        }
+
+        if (player.x + mouse_buffer > platform.x - platformbuffer.x)
+        {
+            playerVelocity.x = 0;
+            intersection.x = (player.x + mouse_buffer) - (platform.x - platformbuffer.x);
+            player.x = player.x - intersection.x;
+        }
+        else if (player.x - mouse_buffer < platform.x + platformbuffer.x)
+        {
+            playerVelocity.x = 0;
+            intersection.x = (platform.x + platformbuffer.x) - (player.x - mouse_buffer);
+            player.x = player.x + intersection.x;
         }
     }
     else
