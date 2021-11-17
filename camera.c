@@ -40,20 +40,20 @@ void camera_update(void)
 		translationMatrix = CP_Matrix_Translate(currentPosition);
 		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
 	}*/
-	
+
 
 	if (CP_Input_KeyDown(KEY_RIGHT) || CP_Input_KeyDown(KEY_D))
 	{
 		currentPosition.x += dt * -PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
-		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
+		//printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
 	}
 
 	else if (CP_Input_KeyDown(KEY_LEFT) || CP_Input_KeyDown(KEY_A))
 	{
 		currentPosition.x += dt * PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
-		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
+		//printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
 	}
 
 	CP_Vector offsetOrigin = CP_Vector_Scale(currentPosition, -1.0f);
