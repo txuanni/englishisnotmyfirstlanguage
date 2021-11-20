@@ -22,6 +22,10 @@ typedef struct Player
 	CP_Vector velocity;
 	CP_Vector position;
 	CP_Image idleGFX;
+	CP_Image leftGFX;
+	CP_Image left1GFX;
+	CP_Image rightGFX;
+	CP_Image right1GFX;
 }Player;
 
 //This struct will hold all our player variables

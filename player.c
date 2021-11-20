@@ -29,6 +29,12 @@ void player_init(void)
     gPlayer.position = CP_Vector_Set(150.0f, 500.0f);
     gPlayer.velocity = CP_Vector_Zero();
     gPlayer.idleGFX = CP_Image_Load("./Assets/idle.png");
+    gPlayer.leftGFX = CP_Image_Load("./Assets/leftwalk_1.png");
+    gPlayer.left1GFX = CP_Image_Load("./Assets/leftwalk_2.png");
+    gPlayer.rightGFX = CP_Image_Load("./Assets/walk_1.png");
+    gPlayer.right1GFX = CP_Image_Load("./Assets/walk_2.png");
+    //int leftAnim[2] = { gPlayer.leftGFX, gPlayer.left1GFX };
+    //int rightAnim[2] = { gPlayer.rightGFX, gPlayer.right1GFX };
 }
 
 void player_update(float dt)
@@ -48,6 +54,7 @@ void player_update(float dt)
     }
     else
     {
+        gPlayer.isMovingLeft = 0;
         gPlayer.isMovingRight = 0;
         gPlayer.velocity.x = 0.0f;
     }
@@ -85,8 +92,19 @@ void player_update(float dt)
 
 void player_render(void)
 {
+    
     //Draw the idle state graphics
-    CP_Image_Draw(gPlayer.idleGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
+    if (gPlayer.isMovingLeft == 1) {
+        CP_Image_Draw(gPlayer.leftGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
+    }
+    
+    else if (gPlayer.isMovingRight == 1) {
+        CP_Image_Draw(gPlayer.rightGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
+    }
+    
+    else if (gPlayer.isMovingLeft == 0 && gPlayer.isMovingRight == 0) {
+        CP_Image_Draw(gPlayer.idleGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
+    }
     printf("Player pos: %.2f, %.2f\n", gPlayer.position.x, gPlayer.position.y);
     //TODO: Change graphics based on moving left/moving right
     //Hint: use if/else or switch statements
