@@ -41,10 +41,20 @@ void player_update(float dt)
         gPlayer.isMovingRight = 1;
         gPlayer.velocity.x = PLAYER_MOVE_SPEED;
     }
+
     else
     {
-        gPlayer.isMovingLeft = 0;
-        gPlayer.isMovingRight = 0;
+        if (CP_Input_KeyReleased(KEY_A) || CP_Input_KeyReleased(KEY_LEFT))
+        {
+            printf("Hello\n");
+            gPlayer.isMovingLeft = 0;
+            gPlayer.isMovingRight = 1;
+        }
+        if (CP_Input_KeyReleased(KEY_D) || CP_Input_KeyReleased(KEY_RIGHT))
+        {
+            gPlayer.isMovingRight = 0;
+            gPlayer.isMovingLeft = 1;
+        }
         gPlayer.velocity.x = 0.0f;
     }
 
@@ -91,8 +101,13 @@ void player_render(void)
         CP_Image_Draw(gPlayer.rightGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
     }
 
-    else if (gPlayer.isMovingLeft == 0 && gPlayer.isMovingRight == 0) {
+    else if (gPlayer.isMovingRight == 0) {
         CP_Image_Draw(gPlayer.idleGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
+    }
+    
+    else if (gPlayer.isMovingLeft == 0)
+    {
+        CP_Image_Draw(gPlayer.idle1GFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
     }
     printf("Player pos: %.2f, %.2f\n", gPlayer.position.x, gPlayer.position.y);
     //TODO: Change graphics based on moving left/moving right
