@@ -18,7 +18,7 @@ void switchPage()
 	{
 		drawbackgroundUI();
 		drawButtons();
-		collision_check_button(buttonPosition);
+		collision_check_button1(buttonPosition);
 	}
 	else if (menu.page == 1)
 	{

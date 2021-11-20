@@ -81,22 +81,22 @@ void player_update(float dt)
 
 void player_render(void)
 {
-    
+
     //Draw the idle state graphics
     if (CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT)) {
         CP_Image_Draw(gPlayer.leftGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
     }
-    
+
     else if (CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT)) {
         CP_Image_Draw(gPlayer.rightGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
     }
-    
+
     else if (gPlayer.isMovingLeft == 0 && gPlayer.isMovingRight == 0) {
         CP_Image_Draw(gPlayer.idleGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
     }
     printf("Player pos: %.2f, %.2f\n", gPlayer.position.x, gPlayer.position.y);
     //TODO: Change graphics based on moving left/moving right
     //Hint: use if/else or switch statements
-}
 
+}
 

@@ -73,10 +73,20 @@ int is_btn_colliding(float mousepositionx, float mousepositiony, CP_Vector butto
         mousepositiony >= buttonPosition.y && mousepositiony <= buttonPosition.y + buttonSize.y;
 }
 
-void collision_check_button(CP_Vector buttonPosition)
+
+void collision_check_button1(CP_Vector buttonPosition)
 {
-    if ((CP_Input_MouseTriggered(MOUSE_BUTTON_1)) && (is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition)))
+    if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
+        printf("clicking\n");
         menu.page = 1;
+    }
+}
+
+void collision_check_button2(CP_Vector buttonPosition)
+{
+    if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
+    {
+        menu.page = 2;
     }
 }
