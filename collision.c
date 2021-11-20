@@ -1,9 +1,18 @@
 #include "cprocessing.h"
 #include <stdio.h>
 #include "collision.h"
+<<<<<<< Updated upstream
 #include "player.h"
 
 #define ERROR_MARGIN 10.0f
+=======
+#include "sceneManager.h"
+#define mouse_buffer 45
+
+CP_Vector playerVelocity;
+CP_Vector playerGravity;
+CP_Vector buttonSize;
+>>>>>>> Stashed changes
 
 //#define mouse_buffer 45
 
@@ -21,10 +30,30 @@ int CheckAABB_Collision(CP_Vector aPos, CP_Vector aSize, CP_Vector bPos, CP_Vect
         (aPos.y + aSize.y >= bPos.y - bSize.y) && (aPos.y - aSize.y <= bPos.y + bSize.y);
 }
 
+<<<<<<< Updated upstream
 void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize)
+=======
+int is_btn_colliding(float mousepositionx, float mousepositiony, CP_Vector buttonPosition) 
+{
+    return mousepositionx >= buttonPosition.x && mousepositionx <= buttonPosition.x + buttonSize.x &&
+        mousepositiony >= buttonPosition.y && mousepositiony <= buttonPosition.y + buttonSize.y;
+}
+
+void collision_check_button(CP_Vector buttonPosition)
+{
+    if ((CP_Input_MouseTriggered(MOUSE_BUTTON_1)) && (is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition)))
+    {
+        printf("colliding");
+        menu.page = 1;
+    }
+}
+
+void collision_check_platform(CP_Vector player, CP_Vector platform, CP_Vector platformbuffer)
+>>>>>>> Stashed changes
 {
     if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), platformPos, platformSize))
     {
+<<<<<<< Updated upstream
         //printf("Collision detected!\n");
 
         gPlayer.canMoveLeft = 1;
@@ -52,6 +81,24 @@ void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize)
             gPlayer.isJumping = 1;
             gPlayer.velocity.y = 0.0f;
         }
+=======
+        printf("colliding with platform\n");
+        isJumping = 0;
+        playerVelocity.y = 0;
+   
+    }
+    else
+    {
+        playerVelocity.y += playerGravity.y * timeElapsed;
+    }
+}
+
+void collision_check_cheese(CP_Vector player, CP_Vector cheese, CP_Vector cheesebuffer)
+{
+    if (is_colliding(player, cheese, cheesebuffer))
+    {
+        printf("colliding with cheese\n");
+>>>>>>> Stashed changes
 
         //gPlayer on the left side of platform and inside
         if (gPlayer.position.x + gPlayer.size.x * 0.5f >= platformPos.x - platformSize.x &&
@@ -74,6 +121,7 @@ void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize)
     }
 }
 
+<<<<<<< Updated upstream
 //int is_colliding(CP_Vector player, CP_Vector object, CP_Vector buffer)
 //{
 //    return player.x + mouse_buffer >= object.x - buffer.x && player.x - mouse_buffer <= object.x + buffer.x &&
@@ -133,3 +181,22 @@ void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize)
 //{
 //    //TODO: Terrain collision
 //}
+=======
+void collision_check_terrain(CP_Vector player, CP_Vector terrain, CP_Vector terrainbuffer)
+{
+    /*if (is_colliding(player, terrain, terrainbuffer))
+    {
+        printf("colliding with platform\n");
+        isJumping = 0;
+        playerVelocity.y = 0;
+
+    }
+    else
+    {
+        playerVelocity.y += playerGravity.y * timeElapsed;
+    }*/
+}
+
+
+
+>>>>>>> Stashed changes

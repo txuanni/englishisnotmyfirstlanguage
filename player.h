@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -50,3 +51,9 @@ void player_render(void);
 
 
 #endif // !PLAYER_H
+=======
+void player_init(void);
+void spawn_mouse(void);
+	
+void mouse_movement();
+>>>>>>> Stashed changes
