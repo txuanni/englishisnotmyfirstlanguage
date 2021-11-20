@@ -7,13 +7,9 @@ CP_Image terrainImage = NULL;
 
 void terrain_init(void)
 {
-<<<<<<< Updated upstream
 	terrainPosition = CP_Vector_Set(700, 650);
-=======
-	terrainPosition = CP_Vector_Set(700, 700);
->>>>>>> Stashed changes
 	terrainSize = CP_Vector_Set(130, 40);
-	terrainBuffer = CP_Vector_Set(65, 20);
+	terrainBuffer = CP_Vector_Set(805, 105);
 	terrainImage = CP_Image_Load("./Assets/terrain.png");
 }
 

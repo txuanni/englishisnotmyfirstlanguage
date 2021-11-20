@@ -7,16 +7,10 @@
 //#define mouse_buffer 45
 //#define platform_bufferx 375
 
-<<<<<<< Updated upstream
 //CP_Image mouseImage = NULL;
 //CP_Vector playerVelocity;
 //CP_Vector playerGravity;
 //CP_Vector playerPosition;
-=======
-float timeElapsed;
-int isJumping; //Jumping flag
-int movementState = 2;
->>>>>>> Stashed changes
 
 //float timeElapsed;
 //int isJumping; //Jumping flag
@@ -50,13 +44,8 @@ void player_update(float dt)
     if ((CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT)) &&
         gPlayer.canMoveLeft)
     {
-<<<<<<< Updated upstream
         gPlayer.isMovingLeft = 1;
         gPlayer.velocity.x = -PLAYER_MOVE_SPEED;
-=======
-        movementState = 1;
-        playerVelocity.x = -200;
->>>>>>> Stashed changes
     }
     else if ((CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT)) &&
         gPlayer.canMoveRight)

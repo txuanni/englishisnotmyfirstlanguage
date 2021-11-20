@@ -1,7 +1,10 @@
+#include "cprocessing.h"
 struct sceneManager {
-	int page;
-	int level;
-}; struct sceneManager menu;
+	CP_Vector backgroundPosition;
+	CP_Vector backgroundSize;
+	CP_Image backgroundImage;
+};
+struct sceneManager scene;
 
-void sceneManager_init();
-void switchPage();
+void sceneManger_init(struct sceneManager* game);
+void draw_background(struct sceneManager* game);
