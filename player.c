@@ -3,18 +3,6 @@
 #include "collision.h"
 #include "player.h"
 
-//#define mouse_size 90
-//#define mouse_buffer 45
-//#define platform_bufferx 375
-
-//CP_Image mouseImage = NULL;
-//CP_Vector playerVelocity;
-//CP_Vector playerGravity;
-//CP_Vector playerPosition;
-
-//float timeElapsed;
-//int isJumping; //Jumping flag
-
 void player_init(void)
 {
     gPlayer.canJump = 1;

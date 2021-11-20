@@ -1,13 +1,28 @@
 #include "sceneManager.h"
+#include "menu.h"
+#include "collision.h"
+#include "level1.h"
 
-void sceneManger_init(struct sceneManager* game)
+#include <stdio.h>
+
+CP_Vector buttonPosition;
+
+void sceneManager_init()
 {
-	game->backgroundPosition = CP_Vector_Set(800, 450);
-	game->backgroundSize = CP_Vector_Set(1600, 900);
-	game->backgroundImage = CP_Image_Load("./Assets/background.png");
+	menu.page = 0;
 }
 
-void draw_background(struct sceneManager* game)
+void switchPage()
 {
-	CP_Image_Draw(game->backgroundImage, game->backgroundPosition.x, game->backgroundPosition.y, game->backgroundSize.x, game->backgroundSize.y, 255);
+	if (menu.page == 0)
+	{
+		drawbackgroundUI();
+		drawButtons();
+		collision_check_button(buttonPosition);
+	}
+	else if (menu.page == 1)
+	{
+		drawbackground();
+		gameplay();
+	}
 }

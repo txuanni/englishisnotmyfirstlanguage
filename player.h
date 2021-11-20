@@ -41,12 +41,4 @@ void player_update(float dt);
 //Render the player
 void player_render(void);
 
-//==========legacy code==============//
-//void mouse_init(void);
-//
-//void spawn_mouse(void);
-//	
-//void mouse_movement(float dt);
-
-
 #endif // !PLAYER_H
