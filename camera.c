@@ -2,28 +2,26 @@
 #include <stdio.h>
 #include "player.h"
 
-#define mouse_size 90
 
-static const float SCALE = 3.0f;
-static const float PAN = 200.0f;
+static const float SCALE = 1.5f;
+static const float PAN = 100.0f;
 
 static float currentScale;
-
-static CP_Vector currentPosition, centerOffset;
+CP_Vector currentPosition, centerOffset, leftOffset, rightOffset;
 
 static CP_Matrix scaleMatrix, translationMatrix;
 
 CP_Image mouseCamera = NULL;
 
-void camera_init(void)
+void camera_init(CP_Vector playerPosition)
 {
 	scaleMatrix = CP_Matrix_Identity();
-	currentScale = 5.0f;
 
-	float centerX = 150.0f;
-	float centerY = 650.0f;
-
-	centerOffset = CP_Vector_Set(centerX, centerY);
+	//float centerX = CP_System_GetWindowWidth() / 2.0f;
+	//float centerY = CP_System_GetWindowHeight() / 2.0f;
+	
+	//leftOffset = CP_System_GetWindowWidth() - 
+	centerOffset = CP_Vector_Set(playerPosition.x, playerPosition.y);
 	currentPosition = CP_Vector_Zero();
 	translationMatrix = CP_Matrix_Translate(currentPosition);
 
@@ -31,27 +29,34 @@ void camera_init(void)
 
 }
 
-void camera_update(void)
+void camera_update(CP_Vector playerPosition, CP_Vector playerGravity, 
+	CP_Vector playerVelocity, float timeElapsed)
 {
-	float dt = CP_System_GetDt();
-	/*if (CP_Input_KeyDown(KEY_UP) || CP_Input_KeyDown(KEY_W))
+
+	if (CP_Input_KeyDown(KEY_UP) || CP_Input_KeyDown(KEY_W))
 	{
-		currentPosition.y += dt * PAN;
+		currentPosition.y += timeElapsed * PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
 		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
-	}*/
+	}
+	
 
-
-	if (CP_Input_KeyDown(KEY_RIGHT) || CP_Input_KeyDown(KEY_D))
+	else if (CP_Input_KeyDown(KEY_RIGHT) || CP_Input_KeyDown(KEY_D))
 	{
-		currentPosition.x += dt * -PAN;
+		currentPosition.x += timeElapsed * -PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
 		//printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
 	}
 
 	else if (CP_Input_KeyDown(KEY_LEFT) || CP_Input_KeyDown(KEY_A))
 	{
-		currentPosition.x += dt * PAN;
+		currentPosition.x += timeElapsed * PAN;
+		translationMatrix = CP_Matrix_Translate(currentPosition);
+		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
+	}
+	else if (CP_Input_KeyDown(KEY_DOWN))
+	{
+		currentPosition.y += timeElapsed * -PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
 		//printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
 	}
@@ -60,7 +65,7 @@ void camera_update(void)
 	CP_Vector offsetVector = CP_Vector_Add(offsetOrigin, centerOffset);
 	CP_Matrix offsetMatrix = CP_Matrix_Translate(CP_Vector_Scale(offsetVector, -1.0f));
 
-	//Translates all objects by the world space position fo the curren screen center
+	//Translates all objects by the world space position to the curren screen center
 	CP_Matrix offsetUndoMatrix = CP_Matrix_Translate(offsetVector);
 	//now all objects are within the center screen local coordinate system
 

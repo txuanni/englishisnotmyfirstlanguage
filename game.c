@@ -12,6 +12,8 @@
 #define recommendedWidth 1600
 #define recommendedHeight 900
 CP_Vector playerPosition;
+CP_Vector playerGravity;
+CP_Vector playerVelocity;
 CP_Vector platformPosition;
 CP_Vector platformPosition2;
 CP_Vector platformPosition3;
@@ -35,7 +37,7 @@ void game_init(void)
 	terrain_init();
 	cheese_init();
 	traps_init();
-	camera_init();
+	camera_init(playerPosition);
 
 	sceneManger_init(&game);
 }
@@ -47,7 +49,8 @@ void game_update(void)
 	float dt = CP_System_GetDt();
 	//Note: Always update first before rendering
 	//Update
-	camera_update();
+	camera_update(playerPosition, playerGravity,
+		playerVelocity, timeElapsed);
 	player_update(dt);
 	Collision_PlayerWithPlatform(platformPosition2, platformBuffer);
 	Collision_PlayerWithPlatform(platformPosition3, platformBuffer);

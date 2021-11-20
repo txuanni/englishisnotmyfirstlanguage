@@ -29,6 +29,7 @@ void player_init(void)
     gPlayer.position = CP_Vector_Set(150.0f, 500.0f);
     gPlayer.velocity = CP_Vector_Zero();
     gPlayer.idleGFX = CP_Image_Load("./Assets/idle.png");
+    gPlayer.idle1GFX = CP_Image_Load("./Assets/idle_left.png");
     gPlayer.leftGFX = CP_Image_Load("./Assets/leftwalk_1.png");
     gPlayer.left1GFX = CP_Image_Load("./Assets/leftwalk_2.png");
     gPlayer.rightGFX = CP_Image_Load("./Assets/walk_1.png");
@@ -94,11 +95,11 @@ void player_render(void)
 {
     
     //Draw the idle state graphics
-    if (gPlayer.isMovingLeft == 1) {
+    if (CP_Input_KeyDown(KEY_A) || CP_Input_KeyDown(KEY_LEFT)) {
         CP_Image_Draw(gPlayer.leftGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
     }
     
-    else if (gPlayer.isMovingRight == 1) {
+    else if (CP_Input_KeyDown(KEY_D) || CP_Input_KeyDown(KEY_RIGHT)) {
         CP_Image_Draw(gPlayer.rightGFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
     }
     

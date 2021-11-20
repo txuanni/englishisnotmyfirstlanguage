@@ -22,6 +22,7 @@ typedef struct Player
 	CP_Vector velocity;
 	CP_Vector position;
 	CP_Image idleGFX;
+	CP_Image idle1GFX;
 	CP_Image leftGFX;
 	CP_Image left1GFX;
 	CP_Image rightGFX;
