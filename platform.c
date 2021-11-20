@@ -1,28 +1,22 @@
 #include "cprocessing.h"
-
-CP_Vector platformPosition;
-CP_Vector platformSize;
-CP_Vector platformBuffer;
-
-CP_Vector platformPosition2;
-CP_Vector platformPosition3;
-
-CP_Image platformImage = NULL;
+#include "platform.h"
 
 
 void platform_init(void)
 {
-	platformSize = CP_Vector_Set(1000, 100);
-	platformBuffer = CP_Vector_Set(500, 50);
-	platformPosition = CP_Vector_Set(400, 350);
-	platformPosition2 = CP_Vector_Set(400, 700);
-	platformPosition3 = CP_Vector_Set(800, 600);
-	platformImage = CP_Image_Load("./Assets/platform.png");
+	platforms[0].Size = CP_Vector_Set(1000, 100);
+	platforms[0].Buffer = CP_Vector_Set(500, 50);
+	platforms[0].Position = CP_Vector_Set(400, 350);
+	platforms[1].Position = CP_Vector_Set(400, 700);
+	platforms[2].Position = CP_Vector_Set(800, 600);
+	platforms[0].Image = CP_Image_Load("./Assets/platform.png");
+	platforms[1].Image = CP_Image_Load("./Assets/platform.png");
+	platforms[2].Image = CP_Image_Load("./Assets/platform.png");
 }
 
 void spawn_platform(void)
 {
-	CP_Image_Draw(platformImage, platformPosition.x, platformPosition.y, platformSize.x, platformSize.y, 255);
-	CP_Image_Draw(platformImage, platformPosition2.x, platformPosition2.y, platformSize.x, platformSize.y, 255);
-	CP_Image_Draw(platformImage, platformPosition3.x, platformPosition3.y, platformSize.x, platformSize.y, 255);
+	CP_Image_Draw(platforms[0].Image, platforms[0].Position.x, platforms[0].Position.y, platforms[0].Size.x, platforms[0].Size.y, 255);
+	CP_Image_Draw(platforms[1].Image, platforms[1].Position.x, platforms[1].Position.y, platforms[0].Size.x, platforms[0].Size.y, 255);
+	CP_Image_Draw(platforms[2].Image, platforms[2].Position.x, platforms[2].Position.y, platforms[0].Size.x, platforms[0].Size.y, 255);
 }

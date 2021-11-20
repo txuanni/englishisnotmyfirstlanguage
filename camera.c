@@ -16,11 +16,6 @@ CP_Image mouseCamera = NULL;
 void camera_init(CP_Vector playerPosition)
 {
 	scaleMatrix = CP_Matrix_Identity();
-
-	//float centerX = CP_System_GetWindowWidth() / 2.0f;
-	//float centerY = CP_System_GetWindowHeight() / 2.0f;
-	
-	//leftOffset = CP_System_GetWindowWidth() - 
 	centerOffset = CP_Vector_Set(playerPosition.x, playerPosition.y);
 	currentPosition = CP_Vector_Zero();
 	translationMatrix = CP_Matrix_Translate(currentPosition);
@@ -45,7 +40,6 @@ void camera_update(CP_Vector playerPosition, CP_Vector playerGravity,
 	{
 		currentPosition.x += timeElapsed * -PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
-		//printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
 	}
 
 	else if (CP_Input_KeyDown(KEY_LEFT) || CP_Input_KeyDown(KEY_A))
@@ -58,7 +52,6 @@ void camera_update(CP_Vector playerPosition, CP_Vector playerGravity,
 	{
 		currentPosition.y += timeElapsed * -PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
-		//printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
 	}
 
 	CP_Vector offsetOrigin = CP_Vector_Scale(currentPosition, -1.0f);
@@ -80,6 +73,5 @@ void camera_update(CP_Vector playerPosition, CP_Vector playerGravity,
 
 	CP_Settings_ApplyMatrix(transform);
 
-	//Draw the mouse here
-	//CP_Image_Draw(mouseCamera, offsetVector.x, offsetVector.y, mouse_size, mouse_size, 255);
+
 }

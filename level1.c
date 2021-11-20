@@ -51,9 +51,9 @@ void gameplay()
 	camera_update(playerPosition, playerGravity,
 		playerVelocity, timeElapsed);
 	player_update(timeElapsed);
-	Collision_PlayerWithPlatform(platformPosition2, platformBuffer);
-	Collision_PlayerWithPlatform(platformPosition3, platformBuffer);
-	Collision_PlayerWithPlatform(platformPosition, platformBuffer);
+	Collision_PlayerWithPlatform(platforms[1].Position, platforms[0].Buffer);
+	Collision_PlayerWithPlatform(platforms[2].Position, platforms[0].Buffer);
+	Collision_PlayerWithPlatform(platforms[0].Position, platforms[0].Buffer);
 
 	//Render
 	spawn_platform();
