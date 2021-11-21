@@ -72,5 +72,5 @@ void gameplay()
 	spawn_traps();
 	spawn_door();
 	spawn_cheese();
-	player_render();
+	player_render(timeElapsed);
 }

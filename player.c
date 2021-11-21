@@ -23,8 +23,7 @@ void player_init(void)
     gPlayer.left1GFX = CP_Image_Load("./Assets/leftwalk_2.png");
     gPlayer.rightGFX = CP_Image_Load("./Assets/walk_1.png");
     gPlayer.right1GFX = CP_Image_Load("./Assets/walk_2.png");
-    //int leftAnim[2] = { gPlayer.leftGFX, gPlayer.left1GFX };
-    //int rightAnim[2] = { gPlayer.rightGFX, gPlayer.right1GFX };
+    gPlayer.deathGFX = CP_Image_Load("./Assets/die.png");
 }
 
 void player_update(float dt)
@@ -90,7 +89,7 @@ void player_update(float dt)
     gPlayer.isGrounded = 0;
 }
 
-void player_render(void)
+void player_render(float dt)
 {
 
     //Draw the idle state graphics
@@ -111,6 +110,9 @@ void player_render(void)
         CP_Image_Draw(gPlayer.idle1GFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
     }
     printf("Player pos: %.2f, %.2f\n", gPlayer.position.x, gPlayer.position.y);
+
+   
+
     //TODO: Change graphics based on moving left/moving right
     //Hint: use if/else or switch statements
 

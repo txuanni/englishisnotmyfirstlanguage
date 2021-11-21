@@ -28,6 +28,7 @@ typedef struct Player
 	CP_Image left1GFX;
 	CP_Image rightGFX;
 	CP_Image right1GFX;
+	CP_Image deathGFX;
 }Player;
 
 //This struct will hold all our player variables
@@ -39,8 +40,8 @@ void player_init(void);
 //Update the player
 void player_update(float dt);
 
-//Render the player1
-void player_render(void);
+//Render the player
+void player_render(float dt);
 
 void death(CP_Vector *playerposition);
 #endif // !PLAYER_H
