@@ -25,7 +25,7 @@ void background_init()
 	terrain_init();
 	cheese_init();
 	traps_init();
-	camera_init(playerPosition);
+	camera_init(gPlayer.position);
 	menu_init();
 }
 
@@ -39,8 +39,7 @@ void gameplay()
 	timeElapsed = CP_System_GetDt();
 	//Note: Always update first before rendering
 	//Update
-	camera_update(playerPosition, playerGravity,
-		playerVelocity, timeElapsed);
+	camera_update(gPlayer.position, gPlayer.size, timeElapsed);
 	player_update(timeElapsed);
 
 	for (int i = 0; i < 1; i++)

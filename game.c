@@ -6,7 +6,7 @@
 #include "terrain.h"
 #include "traps.h"
 #include "collision.h"
-#include "camera.h"
+#include "cameraV2.h"
 #include "sceneManager.h"
 #include "menu.h"
 #include "level1.h"

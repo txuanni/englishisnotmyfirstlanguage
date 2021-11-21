@@ -24,11 +24,10 @@ void camera_init(CP_Vector playerPosition)
 
 }
 
-void camera_update(CP_Vector playerPosition, CP_Vector playerGravity, 
-	CP_Vector playerVelocity, float timeElapsed)
+void camera_update(CP_Vector playerPosition, CP_Vector playerSize,
+	float timeElapsed)
 {
-
-	if (CP_Input_KeyDown(KEY_UP) || CP_Input_KeyDown(KEY_W))
+	/*if (CP_Input_KeyDown(KEY_UP) || CP_Input_KeyDown(KEY_W))
 	{
 		currentPosition.y += timeElapsed * PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
@@ -52,7 +51,10 @@ void camera_update(CP_Vector playerPosition, CP_Vector playerGravity,
 	{
 		currentPosition.y += timeElapsed * -PAN;
 		translationMatrix = CP_Matrix_Translate(currentPosition);
-	}
+	}*/
+
+	currentPosition.x = -(playerPosition.x + (playerSize.x / 2) - CP_System_GetWindowWidth() / 2.0f);
+	translationMatrix = CP_Matrix_Translate(currentPosition);
 
 	CP_Vector offsetOrigin = CP_Vector_Scale(currentPosition, -1.0f);
 	CP_Vector offsetVector = CP_Vector_Add(offsetOrigin, centerOffset);
