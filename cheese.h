@@ -1,5 +1,7 @@
+#include "cprocessing.h"
 void cheese_init();
 void spawn_cheese();
+
 
 typedef struct Cheese
 {
