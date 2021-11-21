@@ -187,7 +187,7 @@ void Collision_PlayerWithTraps(CP_Vector Trappos, CP_Vector TrapSize)
         gPlayer.canMoveLeft = 1;
         gPlayer.canMoveRight = 1;
 
-        //gPlayer on top of cheese
+        //gPlayer on top of Trap
         if (gPlayer.position.y + gPlayer.size.y * 0.5f >= Trappos.y - TrapSize.y &&
             gPlayer.position.y + gPlayer.size.y * 0.5f <= Trappos.y - TrapSize.y + ERROR_MARGIN &&
             gPlayer.position.x - gPlayer.size.x * 0.5f <= Trappos.x + TrapSize.x - ERROR_MARGIN &&
@@ -200,7 +200,7 @@ void Collision_PlayerWithTraps(CP_Vector Trappos, CP_Vector TrapSize)
             gPlayer.isGrounded = 1;
         }
 
-        //gPlayer below cheese
+        //gPlayer below Trap
         else if (gPlayer.position.y - gPlayer.size.y * 0.5f <= Trappos.y + TrapSize.y &&
             gPlayer.position.y - gPlayer.size.y * 0.5f >= Trappos.y + TrapSize.y - ERROR_MARGIN &&
             gPlayer.position.x - gPlayer.size.x * 0.5f <= Trappos.x + TrapSize.x - ERROR_MARGIN &&
@@ -213,7 +213,7 @@ void Collision_PlayerWithTraps(CP_Vector Trappos, CP_Vector TrapSize)
             gPlayer.velocity.y = 0.0f;
         }
 
-        //gPlayer on the left side of cheese and inside
+        //gPlayer on the left side of Trap and inside
         if (gPlayer.position.x + gPlayer.size.x * 0.5f >= Trappos.x - TrapSize.x &&
             gPlayer.position.x + gPlayer.size.x * 0.5f <= Trappos.x + TrapSize.x &&
             gPlayer.position.y + gPlayer.size.y * 0.5f >= Trappos.y - TrapSize.y + ERROR_MARGIN && //Allow player to be inside a little bit
@@ -222,7 +222,7 @@ void Collision_PlayerWithTraps(CP_Vector Trappos, CP_Vector TrapSize)
             printf("gPlayer on the left of cheese!\n");
             gPlayer.canMoveRight = 0;
         }
-        //gPlayer on the right side of cheese
+        //gPlayer on the right side of Trap
         else if (gPlayer.position.x - gPlayer.size.x * 0.5f <= Trappos.x + TrapSize.x &&
             gPlayer.position.x - gPlayer.size.x * 0.5f >= Trappos.x - TrapSize.x &&
             gPlayer.position.y + gPlayer.size.y * 0.5f >= Trappos.y - TrapSize.y + ERROR_MARGIN && //Allow player to be inside a little bit
@@ -232,6 +232,16 @@ void Collision_PlayerWithTraps(CP_Vector Trappos, CP_Vector TrapSize)
 
             gPlayer.canMoveLeft = 0;
         }
+    }
+}
+
+void Collision_PlayerWithDoor(CP_Vector Doorpos, CP_Vector DoorSize)
+{
+    if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), Doorpos, DoorSize))
+
+    {
+        //printf("Collision detected!\n");
+        menu.page = 0;
     }
 }
 
