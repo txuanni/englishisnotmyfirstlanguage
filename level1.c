@@ -5,6 +5,7 @@
 #include "platform.h"
 #include "terrain.h"
 #include "traps.h"
+#include "door.h"
 #include "collision.h"
 #include "camera.h"
 #include "menu.h"
@@ -26,7 +27,8 @@ void background_init()
 	terrain_init();
 	cheese_init();
 	traps_init();
-	camera_init(gPlayer.position);
+	door_init();
+	camera_init(playerPosition);
 	menu_init();
 }
 
@@ -63,10 +65,12 @@ void gameplay()
 		Collision_PlayerWithTraps(trap[i].Position, trap->Buffer);
 	}
 	death(&gPlayer.position);
+	Collision_PlayerWithDoor(door.Position, door.Buffer);
 	//Render
 	spawn_platform();
 	spawn_terrain();
 	spawn_traps();
+	spawn_door();
 	spawn_cheese();
 	player_render();
 }

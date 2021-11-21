@@ -5,6 +5,7 @@ void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize)
 void Collision_PlayerWithTerrain(CP_Vector terrainPos, CP_Vector terrainSize);
 void Collision_PlayerWithCheese(CP_Vector Cheesepos, CP_Vector CheeseSize);
 void Collision_PlayerWithTraps(CP_Vector Trappos, CP_Vector TrapSize);
+void Collision_PlayerWithDoor(CP_Vector Doorpos, CP_Vector DoorSize);
 
 int is_btn_colliding(float mousepositionx, float mousepositiony, CP_Vector buttonPosition);
 
