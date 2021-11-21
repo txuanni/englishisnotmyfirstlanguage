@@ -31,7 +31,7 @@ void camera_update(CP_Vector playerPosition, CP_Vector playerGravity,
 	if (CP_Input_KeyDown(KEY_UP) || CP_Input_KeyDown(KEY_W))
 	{
 		currentPosition.y += timeElapsed * PAN;
-		translationMatrix = CP_Matrix_Translate(currentPosition);
+		//translationMatrix = CP_Matrix_Translate(currentPosition);
 		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
 	}
 	
@@ -39,19 +39,19 @@ void camera_update(CP_Vector playerPosition, CP_Vector playerGravity,
 	else if (CP_Input_KeyDown(KEY_RIGHT) || CP_Input_KeyDown(KEY_D))
 	{
 		currentPosition.x += timeElapsed * -PAN;
-		translationMatrix = CP_Matrix_Translate(currentPosition);
+		//translationMatrix = CP_Matrix_Translate(currentPosition);
 	}
 
 	else if (CP_Input_KeyDown(KEY_LEFT) || CP_Input_KeyDown(KEY_A))
 	{
 		currentPosition.x += timeElapsed * PAN;
-		translationMatrix = CP_Matrix_Translate(currentPosition);
+		//translationMatrix = CP_Matrix_Translate(currentPosition);
 		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
 	}
 	else if (CP_Input_KeyDown(KEY_DOWN))
 	{
 		currentPosition.y += timeElapsed * -PAN;
-		translationMatrix = CP_Matrix_Translate(currentPosition);
+		//translationMatrix = CP_Matrix_Translate(currentPosition);
 	}
 
 	CP_Vector offsetOrigin = CP_Vector_Scale(currentPosition, -1.0f);

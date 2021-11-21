@@ -3,6 +3,7 @@
 #include "collision.h"
 #include "player.h"
 #include "sceneManager.h"
+#include "cheese.h"
 
 #define ERROR_MARGIN 10.0f
 CP_Vector buttonSize;

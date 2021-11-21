@@ -1,24 +1,15 @@
 #include "cprocessing.h"
-
-CP_Image cheeseImage = NULL;
-CP_Vector cheesePosition;
-CP_Vector cheeseSize;
-CP_Vector cheeseBuffer;
+#include "cheese.h"
 
 void cheese_init()
 {
-	cheesePosition = CP_Vector_Set(400, 500);
-	cheeseSize = CP_Vector_Set(70, 70);
-	cheeseBuffer = CP_Vector_Set(35, 35);
-	cheeseImage = CP_Image_Load("./Assets/cheese.png");
+    cheeses[0].Position = CP_Vector_Set(400, 500);
+    cheeses[0].Size = CP_Vector_Set(70, 70);
+    cheeses[0].Buffer = CP_Vector_Set(35, 35);
+    cheeses[0].Image = CP_Image_Load("./Assets/cheese.png");
 }
 
 void spawn_cheese()
 {
-	CP_Image_Draw(cheeseImage, cheesePosition.x, cheesePosition.y, cheeseSize.x, cheeseSize.y, 255);
-}
-
-int is_cheese_colliding()
-{
-	return 0;
+    CP_Image_Draw(cheeses[0].Image, cheeses[0].Position.x, cheeses[0].Position.y, cheeses[0].Size.x, cheeses[0].Size.y, 255);
 }
