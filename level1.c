@@ -13,6 +13,7 @@ CP_Vector playerPosition;
 CP_Vector playerGravity;
 CP_Vector playerVelocity;
 CP_Vector player;
+CP_Image dead;
 
 CP_Image backgroundImage = NULL;
 float timeElapsed;
@@ -61,6 +62,7 @@ void gameplay()
 	{
 		Collision_PlayerWithTraps(trap[i].Position, trap->Buffer);
 	}
+	death(&gPlayer.position);
 	//Render
 	spawn_platform();
 	spawn_terrain();

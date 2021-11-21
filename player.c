@@ -5,6 +5,7 @@
 
 void player_init(void)
 {
+    gPlayer.deathcount = 0;
     gPlayer.canJump = 1;
     gPlayer.isJumping = 0;
     gPlayer.isMovingLeft = 0;
@@ -115,3 +116,12 @@ void player_render(void)
 
 }
 
+
+void death(CP_Vector* playerpos)
+{
+    if ((*playerpos).y >= 900)
+    {
+        *playerpos = CP_Vector_Set(150.0f, 500.0f);
+        gPlayer.deathcount++;
+    }
+}

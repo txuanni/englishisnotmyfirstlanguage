@@ -18,6 +18,7 @@ typedef struct Player
 	int canMoveLeft;
 	int canMoveRight;
 	float jumpForce;
+	int deathcount;
 	CP_Vector size;
 	CP_Vector velocity;
 	CP_Vector position;
@@ -38,7 +39,8 @@ void player_init(void);
 //Update the player
 void player_update(float dt);
 
-//Render the player
+//Render the player1
 void player_render(void);
 
+void death(CP_Vector *playerposition);
 #endif // !PLAYER_H
