@@ -45,6 +45,7 @@ void gameplay()
 		playerVelocity, timeElapsed);
 	player_update(timeElapsed);
 
+	Collision_PlayerWithCheese(cheeses->Position, cheeses->Size);
 	for (int i = 0; i < 3; i++)
 	{
 		Collision_PlayerWithPlatform(platforms[i].Position, platforms->Buffer);
