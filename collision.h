@@ -4,6 +4,7 @@ int CheckAABB_Collision(CP_Vector aPos, CP_Vector aSize, CP_Vector bPos, CP_Vect
 void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize);
 void Collision_PlayerWithTerrain(CP_Vector terrainPos, CP_Vector terrainSize);
 void Collision_PlayerWithCheese(CP_Vector Cheesepos, CP_Vector CheeseSize);
+void Collision_PlayerWithTraps(CP_Vector Trappos, CP_Vector TrapSize);
 
 int is_btn_colliding(float mousepositionx, float mousepositiony, CP_Vector buttonPosition);
 

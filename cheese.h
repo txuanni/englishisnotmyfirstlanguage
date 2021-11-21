@@ -1,14 +1,12 @@
 #include "cprocessing.h"
-void cheese_init();
-void spawn_cheese();
+void cheese_init(void);
+void spawn_cheese(void);
 
 
-typedef struct Cheese
+struct Cheeses
 {
     CP_Vector Position;
     CP_Vector Size;
     CP_Vector Buffer;
     CP_Image Image;
-}Cheese;
-
-Cheese cheeses[30];
+}; struct Cheeses cheese[30];

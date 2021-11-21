@@ -3,7 +3,6 @@
 #include "collision.h"
 #include "player.h"
 #include "sceneManager.h"
-#include "cheese.h"
 
 #define ERROR_MARGIN 10.0f
 CP_Vector buttonSize;
@@ -170,6 +169,64 @@ void Collision_PlayerWithCheese(CP_Vector Cheesepos, CP_Vector CheeseSize)
             gPlayer.position.x - gPlayer.size.x * 0.5f >= Cheesepos.x - CheeseSize.x &&
             gPlayer.position.y + gPlayer.size.y * 0.5f >= Cheesepos.y - CheeseSize.y + ERROR_MARGIN && //Allow player to be inside a little bit
             gPlayer.position.y - gPlayer.size.y * 0.5f <= Cheesepos.y + CheeseSize.y - ERROR_MARGIN)
+        {
+            printf("gPlayer on the right of cheese!\n");
+
+            gPlayer.canMoveLeft = 0;
+        }
+    }
+}
+
+void Collision_PlayerWithTraps(CP_Vector Trappos, CP_Vector TrapSize)
+{
+    if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), Trappos, TrapSize))
+
+    {
+        //printf("Collision detected!\n");
+
+        gPlayer.canMoveLeft = 1;
+        gPlayer.canMoveRight = 1;
+
+        //gPlayer on top of cheese
+        if (gPlayer.position.y + gPlayer.size.y * 0.5f >= Trappos.y - TrapSize.y &&
+            gPlayer.position.y + gPlayer.size.y * 0.5f <= Trappos.y - TrapSize.y + ERROR_MARGIN &&
+            gPlayer.position.x - gPlayer.size.x * 0.5f <= Trappos.x + TrapSize.x - ERROR_MARGIN &&
+            gPlayer.position.x + gPlayer.size.x * 0.5f >= Trappos.x - TrapSize.x + ERROR_MARGIN)
+        {
+            printf("gPlayer on top of cheese!\n");
+
+            gPlayer.canJump = 1;
+            gPlayer.isJumping = 0; //gPlayer is on ground, so he is not jumping and is able to jump again
+            gPlayer.isGrounded = 1;
+        }
+
+        //gPlayer below cheese
+        else if (gPlayer.position.y - gPlayer.size.y * 0.5f <= Trappos.y + TrapSize.y &&
+            gPlayer.position.y - gPlayer.size.y * 0.5f >= Trappos.y + TrapSize.y - ERROR_MARGIN &&
+            gPlayer.position.x - gPlayer.size.x * 0.5f <= Trappos.x + TrapSize.x - ERROR_MARGIN &&
+            gPlayer.position.x + gPlayer.size.x * 0.5f >= Trappos.x - TrapSize.x + ERROR_MARGIN)
+        {
+            printf("gPlayer below cheese!\n");
+
+            gPlayer.canJump = 0; //Cannot jump if top is blocked
+            gPlayer.isJumping = 1;
+            gPlayer.velocity.y = 0.0f;
+        }
+
+        //gPlayer on the left side of cheese and inside
+        if (gPlayer.position.x + gPlayer.size.x * 0.5f >= Trappos.x - TrapSize.x &&
+            gPlayer.position.x + gPlayer.size.x * 0.5f <= Trappos.x + TrapSize.x &&
+            gPlayer.position.y + gPlayer.size.y * 0.5f >= Trappos.y - TrapSize.y + ERROR_MARGIN && //Allow player to be inside a little bit
+            gPlayer.position.y - gPlayer.size.y * 0.5f <= Trappos.y + TrapSize.y - ERROR_MARGIN)
+        {
+            printf("gPlayer on the left of cheese!\n");
+            gPlayer.canMoveRight = 0;
+        }
+        //gPlayer on the right side of cheese
+        else if (gPlayer.position.x - gPlayer.size.x * 0.5f <= Trappos.x + TrapSize.x &&
+            gPlayer.position.x - gPlayer.size.x * 0.5f >= Trappos.x - TrapSize.x &&
+            gPlayer.position.y + gPlayer.size.y * 0.5f >= Trappos.y - TrapSize.y + ERROR_MARGIN && //Allow player to be inside a little bit
+            gPlayer.position.y - gPlayer.size.y * 0.5f <= Trappos.y + TrapSize.y - ERROR_MARGIN)
         {
             printf("gPlayer on the right of cheese!\n");
 

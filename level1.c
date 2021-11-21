@@ -12,8 +12,6 @@
 CP_Vector playerPosition;
 CP_Vector playerGravity;
 CP_Vector playerVelocity;
-CP_Vector cheesePosition;
-CP_Vector cheeseBuffer;
 CP_Vector player;
 
 CP_Image backgroundImage = NULL;
@@ -45,7 +43,11 @@ void gameplay()
 		playerVelocity, timeElapsed);
 	player_update(timeElapsed);
 
-	Collision_PlayerWithCheese(cheeses->Position, cheeses->Size);
+	for (int i = 0; i < 1; i++)
+	{
+		Collision_PlayerWithCheese(cheese[i].Position, cheese->Buffer);
+	}
+	
 	for (int i = 0; i < 3; i++)
 	{
 		Collision_PlayerWithPlatform(platforms[i].Position, platforms->Buffer);
@@ -54,6 +56,11 @@ void gameplay()
 	for (int i = 0; i < 11; i++)
 	{
 		Collision_PlayerWithTerrain(terrain[i].Position, terrain[i].Buffer);
+	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		Collision_PlayerWithTraps(trap[i].Position, trap->Buffer);
 	}
 	//Render
 	spawn_platform();
