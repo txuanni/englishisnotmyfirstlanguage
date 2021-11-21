@@ -11,6 +11,7 @@ int is_btn_colliding(float mousepositionx, float mousepositiony, CP_Vector butto
 
 void collision_check_button1(CP_Vector buttonPosition);
 void collision_check_button2(CP_Vector buttonPosition);
+void collision_check_button3(CP_Vector buttonPosition);
 
 //LegacyCode
 //int is_colliding(CP_Vector player, CP_Vector object, CP_Vector buffer);

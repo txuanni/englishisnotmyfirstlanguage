@@ -29,7 +29,7 @@ void background_init()
 	traps_init();
 	door_init();
 	camera_init(playerPosition);
-	menu_init();
+	
 }
 
 void drawbackground()

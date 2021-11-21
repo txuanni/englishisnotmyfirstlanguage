@@ -3,9 +3,9 @@
 #include "collision.h"
 #include "player.h"
 #include "sceneManager.h"
+#include "controls.h"
 
 #define ERROR_MARGIN 10.0f
-CP_Vector buttonSize;
 
 int CheckAABB_Collision(CP_Vector aPos, CP_Vector aSize, CP_Vector bPos, CP_Vector bSize)
 {
@@ -248,21 +248,20 @@ void Collision_PlayerWithDoor(CP_Vector Doorpos, CP_Vector DoorSize)
 
 int is_btn_colliding(float mousepositionx, float mousepositiony, CP_Vector buttonPosition)
 {
-    return mousepositionx >= buttonPosition.x && mousepositionx <= buttonPosition.x + buttonSize.x &&
-        mousepositiony >= buttonPosition.y && mousepositiony <= buttonPosition.y + buttonSize.y;
+    return mousepositionx >= buttonPosition.x && mousepositionx <= buttonPosition.x + button->Size.x &&
+        mousepositiony >= buttonPosition.y && mousepositiony <= buttonPosition.y + button->Size.y;
 }
 
 
-void collision_check_button1(CP_Vector buttonPosition)
+void collision_check_button1(CP_Vector buttonPosition) //start button collision
 {
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
-        printf("clicking\n");
         menu.page = 1;
     }
 }
 
-void collision_check_button2(CP_Vector buttonPosition)
+void collision_check_button2(CP_Vector buttonPosition) //control button collision
 {
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
@@ -270,4 +269,11 @@ void collision_check_button2(CP_Vector buttonPosition)
     }
 }
 
+void collision_check_button3(CP_Vector buttonPosition) //back button collision
+{
+    if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
+    {
+        menu.page = 0; //return to menu page
+    }
+}
 

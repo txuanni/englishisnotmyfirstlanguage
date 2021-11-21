@@ -12,6 +12,7 @@ void sceneManager_init()
 {
 	menu_init();
 	controls_init();
+	background_init();
 	menu.page = 0;
 }
 
@@ -21,7 +22,8 @@ void switchPage()
 	{
 		drawbackgroundUI();
 		drawButtons();
-		collision_check_button1(buttonPosition);
+		collision_check_button1(button[0].Position);
+		collision_check_button2(button[1].Position);
 	}
 	else if (menu.page == 1)
 	{
@@ -32,5 +34,7 @@ void switchPage()
 	else if (menu.page == 2)
 	{
 		drawbackgroundUI();
+		drawControlButtons();
+		collision_check_button3(button[2].Position);
 	}
 }

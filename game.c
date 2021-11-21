@@ -22,9 +22,6 @@ void game_init(void)
 {
 	CP_System_SetWindowSize(recommendedWidth, recommendedHeight);
 	CP_System_SetFrameRate(60.0f);
-
-	
-	background_init();
 	sceneManager_init();
 
 }
