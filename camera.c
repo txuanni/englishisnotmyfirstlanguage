@@ -27,31 +27,6 @@ void camera_init(CP_Vector playerPosition)
 void camera_update(CP_Vector playerPosition, CP_Vector playerSize,
 	float timeElapsed)
 {
-	/*if (CP_Input_KeyDown(KEY_UP) || CP_Input_KeyDown(KEY_W))
-	{
-		currentPosition.y += timeElapsed * PAN;
-		translationMatrix = CP_Matrix_Translate(currentPosition);
-		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
-	}
-	
-
-	else if (CP_Input_KeyDown(KEY_RIGHT) || CP_Input_KeyDown(KEY_D))
-	{
-		currentPosition.x += timeElapsed * -PAN;
-		translationMatrix = CP_Matrix_Translate(currentPosition);
-	}
-
-	else if (CP_Input_KeyDown(KEY_LEFT) || CP_Input_KeyDown(KEY_A))
-	{
-		currentPosition.x += timeElapsed * PAN;
-		translationMatrix = CP_Matrix_Translate(currentPosition);
-		printf("Current Pos: %f %f\n", currentPosition.x, currentPosition.y);
-	}
-	else if (CP_Input_KeyDown(KEY_DOWN))
-	{
-		currentPosition.y += timeElapsed * -PAN;
-		translationMatrix = CP_Matrix_Translate(currentPosition);
-	}*/
 
 	currentPosition.x = -(playerPosition.x + (playerSize.x / 2) - CP_System_GetWindowWidth() / 2.0f);
 	translationMatrix = CP_Matrix_Translate(currentPosition);
