@@ -8,6 +8,8 @@ void traps_init(void)
 
 	trap[0].Position = CP_Vector_Set(700, 650);
 	trap[1].Position = CP_Vector_Set(900, 700);
+
+	trap[10].Position = CP_Vector_Set(3200, 680);
 }
 
 void spawn_traps(void)

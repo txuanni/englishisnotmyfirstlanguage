@@ -242,6 +242,7 @@ void Collision_PlayerWithDoor(CP_Vector Doorpos, CP_Vector DoorSize)
     {
         //printf("Collision detected!\n");
         menu.page = 0;
+        gPlayer.position = CP_Vector_Set(150.0f, 500.0f);
     }
 }
 
