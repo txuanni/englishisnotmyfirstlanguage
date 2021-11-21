@@ -12,15 +12,9 @@
 CP_Vector playerPosition;
 CP_Vector playerGravity;
 CP_Vector playerVelocity;
-CP_Vector platformPosition;
-CP_Vector platformPosition2;
-CP_Vector platformPosition3;
-CP_Vector platformBuffer;
 CP_Vector cheesePosition;
 CP_Vector cheeseBuffer;
-CP_Vector terrainPosition;
-CP_Vector terrainBuffer;
-CP_Vector player, terrain, terrainbuffer;
+CP_Vector player;
 
 CP_Image backgroundImage = NULL;
 float timeElapsed;
@@ -44,17 +38,22 @@ void drawbackground()
 
 void gameplay()
 {
-	
 	timeElapsed = CP_System_GetDt();
 	//Note: Always update first before rendering
 	//Update
 	camera_update(playerPosition, playerGravity,
 		playerVelocity, timeElapsed);
 	player_update(timeElapsed);
-	Collision_PlayerWithPlatform(platforms[1].Position, platforms[0].Buffer);
-	Collision_PlayerWithPlatform(platforms[2].Position, platforms[0].Buffer);
-	Collision_PlayerWithPlatform(platforms[0].Position, platforms[0].Buffer);
 
+	for (int i = 0; i < 3; i++)
+	{
+		Collision_PlayerWithPlatform(platforms[i].Position, platforms->Buffer);
+	}
+
+	for (int i = 0; i < 11; i++)
+	{
+		Collision_PlayerWithTerrain(terrain[i].Position, terrain[i].Buffer);
+	}
 	//Render
 	spawn_platform();
 	spawn_terrain();

@@ -2,14 +2,14 @@ void platform_init(void);
 void spawn_platform(void);
 
 
-typedef struct Platform
+struct Platform
 {
     CP_Vector Position;
     CP_Vector Size;
     CP_Vector Buffer;
     CP_Image Image;
-}Platform;
+}; struct Platform platforms[30];
 
-Platform platforms[30];
+
 
 

@@ -66,6 +66,59 @@ void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize)
     }
 }
 
+void Collision_PlayerWithTerrain(CP_Vector terrainPos, CP_Vector terrainSize)
+{
+    if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), terrainPos, terrainSize))
+    {
+        //printf("Collision detected!\n");
+
+        gPlayer.canMoveLeft = 1;
+        gPlayer.canMoveRight = 1;
+
+        //gPlayer on top of terrain
+        if (gPlayer.position.y + gPlayer.size.y * 0.5f >= terrainPos.y - terrainSize.y &&
+            gPlayer.position.y + gPlayer.size.y * 0.5f <= terrainPos.y - terrainSize.y + ERROR_MARGIN &&
+            gPlayer.position.x - gPlayer.size.x * 0.5f <= terrainPos.x + terrainSize.x - ERROR_MARGIN &&
+            gPlayer.position.x + gPlayer.size.x * 0.5f >= terrainPos.x - terrainSize.x + ERROR_MARGIN)
+        {
+            printf("gPlayer on top of terrain!\n");
+            gPlayer.canJump = 1;
+            gPlayer.isJumping = 0; //gPlayer is on ground, so he is not jumping and is able to jump again
+            gPlayer.isGrounded = 1;
+        }
+        //gPlayer below terrain
+        else if (gPlayer.position.y - gPlayer.size.y * 0.5f <= terrainPos.y + terrainSize.y &&
+            gPlayer.position.y - gPlayer.size.y * 0.5f >= terrainPos.y + terrainSize.y - ERROR_MARGIN &&
+            gPlayer.position.x - gPlayer.size.x * 0.5f <= terrainPos.x + terrainSize.x - ERROR_MARGIN &&
+            gPlayer.position.x + gPlayer.size.x * 0.5f >= terrainPos.x - terrainSize.x + ERROR_MARGIN)
+        {
+            printf("gPlayer below terrain!\n");
+            gPlayer.canJump = 0; //Cannot jump if top is blocked
+            gPlayer.isJumping = 1;
+            gPlayer.velocity.y = 0.0f;
+        }
+
+        //gPlayer on the left side of terrain and inside
+        if (gPlayer.position.x + gPlayer.size.x * 0.5f >= terrainPos.x - terrainSize.x &&
+            gPlayer.position.x + gPlayer.size.x * 0.5f <= terrainPos.x + terrainSize.x &&
+            gPlayer.position.y + gPlayer.size.y * 0.5f >= terrainPos.y - terrainSize.y + ERROR_MARGIN && //Allow player to be inside a little bit
+            gPlayer.position.y - gPlayer.size.y * 0.5f <= terrainPos.y + terrainSize.y - ERROR_MARGIN)
+        {
+            printf("gPlayer on the left of terrain!\n");
+            gPlayer.canMoveRight = 0;
+        }
+        //gPlayer on the right side of terrain
+        else if (gPlayer.position.x - gPlayer.size.x * 0.5f <= terrainPos.x + terrainSize.x &&
+            gPlayer.position.x - gPlayer.size.x * 0.5f >= terrainPos.x - terrainSize.x &&
+            gPlayer.position.y + gPlayer.size.y * 0.5f >= terrainPos.y - terrainSize.y + ERROR_MARGIN && //Allow player to be inside a little bit
+            gPlayer.position.y - gPlayer.size.y * 0.5f <= terrainPos.y + terrainSize.y - ERROR_MARGIN)
+        {
+            printf("gPlayer on the right of terrain!\n");
+            gPlayer.canMoveLeft = 0;
+        }
+    }
+}
+
 
 int is_btn_colliding(float mousepositionx, float mousepositiony, CP_Vector buttonPosition)
 {
