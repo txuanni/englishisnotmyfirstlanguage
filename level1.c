@@ -38,7 +38,9 @@ void drawbackground()
 	CP_Image_Draw(backgroundImage, 800, 450, 1600, 900, 255);
 	CP_Image_Draw(dead, 45, 60, 80, 80, 255);
 	CP_Settings_TextSize(80.0f);
-	CP_Font_DrawText("X ur mom", 85, 75);
+	char buffer[100];
+	sprintf_s(buffer, 100, "X %.0d", gPlayer.deathcount);
+	CP_Font_DrawText(buffer, 85, 75);
 
 }
 
