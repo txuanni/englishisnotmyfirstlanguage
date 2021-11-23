@@ -5,11 +5,13 @@
 #include "controls.h"
 
 #include <stdio.h>
-
+CP_Font font;
 CP_Vector buttonPosition;
 
 void sceneManager_init()
 {
+	font = CP_Font_Load("./Assets/Kalam-Light.ttf");
+	CP_Font_Set(font);
 	menu_init();
 	controls_init();
 	background_init();

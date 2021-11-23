@@ -7,7 +7,6 @@
 #define COLOR_WHITE CP_Color_Create(255, 255, 255, 255)
 
 CP_Image backgroundUIImage = NULL;
-CP_Font font;
 CP_Vector startButtonPosition;
 
 
@@ -16,7 +15,6 @@ void menu_init()
 {	
 
 	backgroundUIImage = CP_Image_Load("./Assets/backgroundui.png");
-	font = CP_Font_Load("./Assets/Kalam-Light.ttf");
 
 	button->Size = CP_Vector_Set(200, 70);
 	button->Buffer = CP_Vector_Set(100, 35);
