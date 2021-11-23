@@ -1,6 +1,7 @@
 #include "cprocessing.h"
 void cheese_init(void);
-void spawn_cheese(void);
+void spawn_good_cheese(void);
+void spawn_bad_cheese(void);
 
 
 struct Cheeses
@@ -9,4 +10,5 @@ struct Cheeses
     CP_Vector Size;
     CP_Vector Buffer;
     CP_Image Image;
+    int isActive;
 }; struct Cheeses cheese[30];

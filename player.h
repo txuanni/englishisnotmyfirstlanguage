@@ -18,7 +18,8 @@ typedef struct Player
 	int canMoveLeft;
 	int canMoveRight;
 	float jumpForce;
-	int deathcount;
+	int deathcount, cheesecount;
+	int collidedWithCheese;
 	CP_Vector size;
 	CP_Vector velocity;
 	CP_Vector position;
@@ -28,7 +29,6 @@ typedef struct Player
 	CP_Image left1GFX;
 	CP_Image rightGFX;
 	CP_Image right1GFX;
-	CP_Image deathGFX;
 }Player;
 
 //This struct will hold all our player variables

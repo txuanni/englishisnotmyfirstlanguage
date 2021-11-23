@@ -6,6 +6,9 @@
 void player_init(void)
 {
     gPlayer.deathcount = 0;
+    gPlayer.collidedWithCheese = 0;
+    gPlayer.cheesecount = 0;
+
     gPlayer.canJump = 1;
     gPlayer.isJumping = 0;
     gPlayer.isMovingLeft = 0;
@@ -14,16 +17,17 @@ void player_init(void)
     gPlayer.canMoveLeft = 1;
     gPlayer.canMoveRight = 1;
     gPlayer.jumpForce = -400.0f;
+
     gPlayer.size = CP_Vector_Set(90.0f, 90.0f);
     gPlayer.position = CP_Vector_Set(150.0f, 500.0f);
     gPlayer.velocity = CP_Vector_Zero();
+
     gPlayer.idleGFX = CP_Image_Load("./Assets/idle.png");
     gPlayer.idle1GFX = CP_Image_Load("./Assets/idle_left.png");
     gPlayer.leftGFX = CP_Image_Load("./Assets/leftwalk_1.png");
     gPlayer.left1GFX = CP_Image_Load("./Assets/leftwalk_2.png");
     gPlayer.rightGFX = CP_Image_Load("./Assets/walk_1.png");
     gPlayer.right1GFX = CP_Image_Load("./Assets/walk_2.png");
-    gPlayer.deathGFX = CP_Image_Load("./Assets/die.png");
 }
 
 void player_update(float dt)

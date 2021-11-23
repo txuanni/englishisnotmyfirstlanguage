@@ -4,6 +4,7 @@
 #include "player.h"
 #include "sceneManager.h"
 #include "controls.h"
+#include "cheese.h"
 
 #define ERROR_MARGIN 10.0f
 
@@ -11,6 +12,7 @@ int CheckAABB_Collision(CP_Vector aPos, CP_Vector aSize, CP_Vector bPos, CP_Vect
 {
     return (aPos.x + aSize.x >= bPos.x - bSize.x) && (aPos.x - aSize.x <= bPos.x + bSize.x) &&
         (aPos.y + aSize.y >= bPos.y - bSize.y) && (aPos.y - aSize.y <= bPos.y + bSize.y);
+
 }
 
 void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize)
@@ -131,10 +133,13 @@ void Collision_PlayerWithBadCheese(CP_Vector Cheesepos, CP_Vector CheeseSize)
 void Collision_PlayerWithGoodCheese(CP_Vector Cheesepos, CP_Vector CheeseSize)
 {
     if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), Cheesepos, CheeseSize))
-
     {
-        //add points code
+        gPlayer.collidedWithCheese = 1;
+        
+        printf("Good Cheese Colliding\n");
+        
     }
+
 }
 
 void Collision_PlayerWithTraps(CP_Vector Trappos, CP_Vector TrapSize)
