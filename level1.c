@@ -71,6 +71,7 @@ void gameplay()
 	{
 		if (cheese->isActive)
 		{
+			spawn_good_cheese();
 			Collision_PlayerWithGoodCheese(cheese[i].Position, cheese->Buffer);
 			if (gPlayer.collidedWithCheese == 1)
 			{
@@ -78,11 +79,6 @@ void gameplay()
 				gPlayer.cheesecount++;
 				CP_Image_Free(&cheese[5].Image);
 			}
-	
-		}
-		if (!cheese->isActive)
-		{
-			spawn_good_cheese();
 		}		
 	}
 
@@ -107,7 +103,7 @@ void gameplay()
 	spawn_terrain();
 	spawn_traps();
 	spawn_door();
-	spawn_good_cheese();
-	spawn_bad_cheese();
+	/*spawn_good_cheese();
+	spawn_bad_cheese();*/
 	player_render(timeElapsed);
 }
