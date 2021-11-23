@@ -15,6 +15,7 @@ CP_Vector playerGravity;
 CP_Vector playerVelocity;
 CP_Vector player;
 CP_Image dead;
+CP_Font font;
 
 CP_Image backgroundImage = NULL;
 float timeElapsed;
@@ -22,6 +23,8 @@ float timeElapsed;
 void background_init()
 {
 	backgroundImage = CP_Image_Load("./Assets/background.png");
+	dead = CP_Image_Load("./Assets/die.png");
+	font = CP_Font_Load("./Assets/Kalam-Light.ttf");
 	platform_init();
 	player_init();
 	terrain_init();
@@ -29,12 +32,18 @@ void background_init()
 	traps_init();
 	door_init();
 	camera_init(playerPosition);
+
 	
 }
 
 void drawbackground()
 {
 	CP_Image_Draw(backgroundImage, 800, 450, 1600, 900, 255);
+	CP_Image_Draw(dead, 45, 60, 80, 80, 255);
+	CP_Font_Set(font);
+	CP_Settings_TextSize(80.0f);
+	CP_Font_DrawText("X ur mom", 85, 75);
+
 }
 
 void gameplay()
@@ -69,8 +78,8 @@ void gameplay()
 	{
 		Collision_PlayerWithTraps(trap[i].Position, trap->Buffer);
 	}
-	touch_water(&gPlayer.position);
 	Collision_PlayerWithDoor(door.Position, door.Buffer);
+	touch_water(&gPlayer.position);
 	//Render
 	spawn_platform();
 	spawn_terrain();
