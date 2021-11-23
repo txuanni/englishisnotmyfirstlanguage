@@ -45,11 +45,16 @@ void gameplay()
 	camera_update(gPlayer.position, gPlayer.size, timeElapsed);
 	player_update(timeElapsed);
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		Collision_PlayerWithCheese(cheese[i].Position, cheese->Buffer);
+		Collision_PlayerWithBadCheese(cheese[i].Position, cheese->Buffer);
 	}
 	
+	for (int i = 5; i < 11; i++)
+	{
+		Collision_PlayerWithGoodCheese(cheese[i].Position, cheese->Buffer);
+	}
+
 	for (int i = 0; i < 3; i++)
 	{
 		Collision_PlayerWithPlatform(platforms[i].Position, platforms->Buffer);
@@ -64,7 +69,7 @@ void gameplay()
 	{
 		Collision_PlayerWithTraps(trap[i].Position, trap->Buffer);
 	}
-	death(&gPlayer.position);
+	touch_water(&gPlayer.position);
 	Collision_PlayerWithDoor(door.Position, door.Buffer);
 	//Render
 	spawn_platform();

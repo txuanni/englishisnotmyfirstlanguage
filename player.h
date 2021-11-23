@@ -43,5 +43,7 @@ void player_update(float dt);
 //Render the player
 void player_render(float dt);
 
-void death(CP_Vector *playerposition);
+void die(CP_Vector* playerpos);
+
+void touch_water(CP_Vector *playerpos);
 #endif // !PLAYER_H

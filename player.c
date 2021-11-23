@@ -117,13 +117,17 @@ void player_render(float dt)
     //Hint: use if/else or switch statements
 
 }
+void die(CP_Vector* playerpos)
+{
+    *playerpos = CP_Vector_Set(150.0f, 500.0f);
+    gPlayer.deathcount++;
+}
 
-
-void death(CP_Vector* playerpos)
+void touch_water(CP_Vector* playerpos)
 {
     if ((*playerpos).y >= 900)
     {
-        *playerpos = CP_Vector_Set(150.0f, 500.0f);
-        gPlayer.deathcount++;
+        die(playerpos);
     }
 }
+

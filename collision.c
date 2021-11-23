@@ -119,61 +119,21 @@ void Collision_PlayerWithTerrain(CP_Vector terrainPos, CP_Vector terrainSize)
     }
 }
 
-void Collision_PlayerWithCheese(CP_Vector Cheesepos, CP_Vector CheeseSize)
+void Collision_PlayerWithBadCheese(CP_Vector Cheesepos, CP_Vector CheeseSize)
 {
     if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), Cheesepos, CheeseSize))
 
     {
-        //printf("Collision detected!\n");
+        die(&gPlayer.position);
+    }
+}
 
-        gPlayer.canMoveLeft = 1;
-        gPlayer.canMoveRight = 1;
+void Collision_PlayerWithGoodCheese(CP_Vector Cheesepos, CP_Vector CheeseSize)
+{
+    if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), Cheesepos, CheeseSize))
 
-        //gPlayer on top of cheese
-        if (gPlayer.position.y + gPlayer.size.y * 0.5f >= Cheesepos.y - CheeseSize.y &&
-            gPlayer.position.y + gPlayer.size.y * 0.5f <= Cheesepos.y - CheeseSize.y + ERROR_MARGIN &&
-            gPlayer.position.x - gPlayer.size.x * 0.5f <= Cheesepos.x + CheeseSize.x - ERROR_MARGIN &&
-            gPlayer.position.x + gPlayer.size.x * 0.5f >= Cheesepos.x - CheeseSize.x + ERROR_MARGIN)
-        {
-            printf("gPlayer on top of cheese!\n");
-
-            gPlayer.canJump = 1;
-            gPlayer.isJumping = 0; //gPlayer is on ground, so he is not jumping and is able to jump again
-            gPlayer.isGrounded = 1;
-        }
-
-        //gPlayer below cheese
-        else if (gPlayer.position.y - gPlayer.size.y * 0.5f <= Cheesepos.y + CheeseSize.y &&
-            gPlayer.position.y - gPlayer.size.y * 0.5f >= Cheesepos.y + CheeseSize.y - ERROR_MARGIN &&
-            gPlayer.position.x - gPlayer.size.x * 0.5f <= Cheesepos.x + CheeseSize.x - ERROR_MARGIN &&
-            gPlayer.position.x + gPlayer.size.x * 0.5f >= Cheesepos.x - CheeseSize.x + ERROR_MARGIN)
-        {
-            printf("gPlayer below cheese!\n");
-
-            gPlayer.canJump = 0; //Cannot jump if top is blocked
-            gPlayer.isJumping = 1;
-            gPlayer.velocity.y = 0.0f;
-        }
-
-        //gPlayer on the left side of cheese and inside
-        if (gPlayer.position.x + gPlayer.size.x * 0.5f >= Cheesepos.x - CheeseSize.x &&
-            gPlayer.position.x + gPlayer.size.x * 0.5f <= Cheesepos.x + CheeseSize.x &&
-            gPlayer.position.y + gPlayer.size.y * 0.5f >= Cheesepos.y - CheeseSize.y + ERROR_MARGIN && //Allow player to be inside a little bit
-            gPlayer.position.y - gPlayer.size.y * 0.5f <= Cheesepos.y + CheeseSize.y - ERROR_MARGIN)
-        {
-            printf("gPlayer on the left of cheese!\n");
-            gPlayer.canMoveRight = 0;
-        }
-        //gPlayer on the right side of cheese
-        else if (gPlayer.position.x - gPlayer.size.x * 0.5f <= Cheesepos.x + CheeseSize.x &&
-            gPlayer.position.x - gPlayer.size.x * 0.5f >= Cheesepos.x - CheeseSize.x &&
-            gPlayer.position.y + gPlayer.size.y * 0.5f >= Cheesepos.y - CheeseSize.y + ERROR_MARGIN && //Allow player to be inside a little bit
-            gPlayer.position.y - gPlayer.size.y * 0.5f <= Cheesepos.y + CheeseSize.y - ERROR_MARGIN)
-        {
-            printf("gPlayer on the right of cheese!\n");
-
-            gPlayer.canMoveLeft = 0;
-        }
+    {
+        //add points code
     }
 }
 
