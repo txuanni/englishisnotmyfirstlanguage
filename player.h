@@ -46,4 +46,6 @@ void player_render(float dt);
 void die(CP_Vector* playerpos);
 
 void touch_water(CP_Vector *playerpos);
+
+void respawn(CP_Vector* playerpos);
 #endif // !PLAYER_H

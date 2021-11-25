@@ -5,7 +5,7 @@ void door_init(void)
 	door.Image = CP_Image_Load("./Assets/door.png");
 	door.Size = CP_Vector_Set(120, 120);
 	door.Buffer = CP_Vector_Set(60, 60);
-	door.Position = CP_Vector_Set(3600, 680);
+	door.Position = CP_Vector_Set(9780, 680);
 	
 }
 

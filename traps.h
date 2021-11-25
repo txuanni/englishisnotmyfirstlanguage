@@ -1,6 +1,7 @@
 #include "cprocessing.h"
 void traps_init(void);
-void spawn_traps(void);
+void spawn_good_traps(void);
+void spawn_bad_traps(void);
 
 struct Traps
 {

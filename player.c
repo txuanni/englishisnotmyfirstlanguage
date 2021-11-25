@@ -2,12 +2,12 @@
 
 #include "collision.h"
 #include "player.h"
+#include "cheese.h"
 
 void player_init(void)
 {
     gPlayer.deathcount = 0;
     gPlayer.collidedWithCheese = 0;
-    gPlayer.cheesecount = 0;
 
     gPlayer.canJump = 1;
     gPlayer.isJumping = 0;
@@ -121,10 +121,19 @@ void player_render(float dt)
     //Hint: use if/else or switch statements
 
 }
-void die(CP_Vector* playerpos)
+
+void respawn(CP_Vector* playerpos)
 {
     *playerpos = CP_Vector_Set(150.0f, 500.0f);
+    cheese->isActive = 1;
+    cheese->Counter = 0;
+}
+
+void die(CP_Vector* playerpos)
+{
+    
     gPlayer.deathcount++;
+    respawn(playerpos);
 }
 
 void touch_water(CP_Vector* playerpos)
@@ -134,4 +143,7 @@ void touch_water(CP_Vector* playerpos)
         die(playerpos);
     }
 }
+
+
+
 
