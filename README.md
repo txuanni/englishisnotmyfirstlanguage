@@ -1,7 +1,11 @@
-EnglishIsNotMyFirstLanguage \n
+EnglishIsNotMyFirstLanguage
 
-Team Members: \n
-Teo Xuan Ni \n
-Qairul \n
+Team Members: 
+
+Teo Xuan Ni 
+
+Qairul 
+
 David Tan
+
 
