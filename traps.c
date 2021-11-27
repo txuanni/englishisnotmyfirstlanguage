@@ -4,7 +4,7 @@ void traps_init(void)
 {
 	trap->Image = CP_Image_Load("./Assets/traps.png");
 	trap->Size = CP_Vector_Set(70, 70);
-	trap->Buffer = CP_Vector_Set(35, 35);
+	trap->Buffer = CP_Vector_Set(25, 25);
 	for (int i = 0; i < 15; i++)
 	{
 		trap[i].isActive = 1;

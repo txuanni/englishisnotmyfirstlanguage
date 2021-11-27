@@ -1,11 +1,14 @@
-#include "cprocessing.h"
 #include <stdio.h>
+#include "cprocessing.h"
 #include "collision.h"
 #include "player.h"
 #include "sceneManager.h"
 #include "controls.h"
 #include "cheese.h"
+#include "door.h"
 #define ERROR_MARGIN 10.0f
+
+CP_Sound clickSFX;
 
 
 
@@ -134,12 +137,9 @@ void Collision_PlayerWithObstacle(CP_Vector Obspos, CP_Vector ObsSize)
 void Collision_PlayerWithDoor(CP_Vector Doorpos, CP_Vector DoorSize)
 {
     if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), Doorpos, DoorSize))
-
     {
-        //printf("Collision detected!\n");
-        menu.page = 0;
+        menu.page = 4;
         CP_Sound_Play(door.SFX);
-        gPlayer.position = CP_Vector_Set(150.0f, 500.0f);
     }
 }
 
@@ -156,7 +156,7 @@ void collision_check_button1(CP_Vector buttonPosition) //start button collision
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
         menu.page = 1;
-        CP_Sound_Play(menu.ClickSFX);
+        CP_Sound_Play(clickSFX);
     }
 }
 
@@ -165,7 +165,7 @@ void collision_check_button2(CP_Vector buttonPosition) //control button collisio
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
         menu.page = 2;
-        CP_Sound_Play(menu.ClickSFX);
+        CP_Sound_Play(clickSFX);
     }
 }
 
@@ -174,7 +174,16 @@ void collision_check_button3(CP_Vector buttonPosition) //back button collision
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
         menu.page = 0; //return to menu page
-        CP_Sound_Play(menu.ClickSFX);
+        CP_Sound_Play(clickSFX);
+    }
+}
+
+void collision_check_button4(CP_Vector buttonPosition) //game over button collision
+{
+    if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
+    {
+        menu.page = 0; //return to menu page
+        CP_Sound_Play(clickSFX);
     }
 }
 

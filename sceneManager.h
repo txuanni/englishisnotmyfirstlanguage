@@ -1,13 +1,8 @@
-struct sceneManager {
-	
+struct SceneManager
+{
 	int page;
 	int level;
-	CP_Sound ClickSFX;
-	ClickSFX = CP_Sound_Load("./Assets/Button.wav");
-}; struct sceneManager menu;
-
-
-
+};  struct SceneManager menu;
 
 void sceneManager_init();
 void switchPage();

@@ -16,11 +16,11 @@ CP_Vector playerPosition;
 CP_Vector playerGravity;
 CP_Vector playerVelocity;
 CP_Vector player;
-CP_Image dead;
-CP_Image cheeseCounterImage;
+CP_Image dead = NULL;
+CP_Image cheeseCounterImage = NULL;
 CP_Image backgroundImage = NULL;
-CP_Sound eatSFX;
-CP_Sound trapSFX;
+CP_Sound eatSFX = NULL;
+CP_Sound trapSFX = NULL;
 
 float timeElapsed;
 
@@ -47,17 +47,17 @@ void drawbackground()
 	CP_Image_Draw(backgroundImage, 800, 450, 1600, 900, 255);
 	CP_Settings_Fill(COLOR_WHITE);
 	//Death Counter
-	CP_Image_Draw(dead, 45, 60, 80, 80, 255);
+	CP_Image_Draw(dead, 60, 60, 80, 60, 255);
 	CP_Settings_TextSize(80.0f);
 	char buffer[100];
-	sprintf_s(buffer, 100, "X %.0d", gPlayer.deathcount);
-	CP_Font_DrawText(buffer, 85, 75);
+	sprintf_s(buffer, 100, "x %.0d", gPlayer.deathcount);
+	CP_Font_DrawText(buffer, 105, 75);
 
 	//Cheese Counter
-	CP_Image_Draw(cheeseCounterImage, 35, 120, 50, 50, 128);
+	CP_Image_Draw(cheeseCounterImage, 50, 120, 50, 50, 255);
 	CP_Settings_TextSize(80.0f);
-	sprintf_s(buffer, 100, "X %.0d", cheese->Counter);
-	CP_Font_DrawText(buffer, 85, 140);
+	sprintf_s(buffer, 100, "x %.0d", cheese->Counter);
+	CP_Font_DrawText(buffer, 100, 140);
 }
 
 void gameplay()
@@ -68,7 +68,13 @@ void gameplay()
 	camera_update(gPlayer.position, gPlayer.size, timeElapsed);
 	player_update(timeElapsed);
 
-	
+	//game explaination text
+	CP_Settings_TextSize(50.0f);
+	CP_Settings_Fill(COLOR_WHITE);
+	CP_Font_DrawText("There's a door awaiting the mouse at the end for it's escape.", -500, 300);
+	CP_Font_DrawText("Cheese and traps maybe harmless or harmful, be cautious... ", -500, 350);
+	CP_Font_DrawText("Also, some of those terrains do look suspicious...", -500, 400);
+	CP_Font_DrawText("Are you able to reach the end? Good luck!", -500, 450);
 
 	//spawn good cheese and add points if collided
 	for (int i = 0; i < 21; i++)
@@ -162,18 +168,11 @@ void gameplay()
 		Collision_PlayerWithPlatform(platforms[i].Position, platforms->Buffer);
 	}
 
-
-	for (int i = 0; i < 30; i++)
-	{
-		//Collision_PlayerWithTraps(trap[i].Position, trap->Buffer);
-	}
-
 	//die
 	Collision_PlayerWithDoor(door.Position, door.Buffer);
 	touch_water(&gPlayer.position);
 	//Render
 	spawn_platform();
-
 	spawn_door();
 	player_render(timeElapsed);
 }

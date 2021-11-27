@@ -1,6 +1,7 @@
 #include "cprocessing.h"
 #include "terrain.h"
 
+
 void terrain_init(void)
 {
 	terrain->Image = CP_Image_Load("./Assets/terrain.png");

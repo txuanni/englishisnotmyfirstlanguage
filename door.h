@@ -9,5 +9,4 @@ struct Doors
     CP_Vector Buffer;
     CP_Image Image;
     CP_Sound SFX;
-    door.SFX = CP_Sound_Load("./Assets/door.wav");
 }; struct Doors door;

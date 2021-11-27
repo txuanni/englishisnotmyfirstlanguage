@@ -17,14 +17,14 @@ void menu_init()
 
 	backgroundUIImage = CP_Image_Load("./Assets/backgroundui.png");
 
-	button->Size = CP_Vector_Set(200, 70);
-	button->Buffer = CP_Vector_Set(100, 35);
+	button->Size = CP_Vector_Set(250, 70);
+	button->Buffer = CP_Vector_Set(125, 35);
 	
-	button[0].Position = CP_Vector_Set(370, 250); //start button
-	button[0].TextPosition = CP_Vector_Set(400, 300); //start text
+	button[0].Position = CP_Vector_Set(320, 300); //start button
+	button[0].TextPosition = CP_Vector_Set(350, 350); //start text
 
-	button[1].Position = CP_Vector_Set(370, 400); //controls button
-	button[1].TextPosition = CP_Vector_Set(400, 450); //controls text
+	button[1].Position = CP_Vector_Set(320, 450); //controls button
+	button[1].TextPosition = CP_Vector_Set(350, 500); //controls text
 	
 	
 }
@@ -43,7 +43,7 @@ void drawButtons()
 	CP_Graphics_DrawRect(button[1].Position.x, button[1].Position.y, button->Size.x, button->Size.y);
 
 	CP_Settings_Fill(COLOR_BLACK);
-	CP_Settings_TextSize(40.0f);
+	CP_Settings_TextSize(80.0f);
 	CP_Font_DrawText("Start", button[0].TextPosition.x, button[0].TextPosition.y);
 	CP_Font_DrawText("Controls", button[1].TextPosition.x, button[1].TextPosition.y);
 }
