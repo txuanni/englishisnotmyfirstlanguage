@@ -3,6 +3,9 @@
 #include "collision.h"
 #include "player.h"
 #include "cheese.h"
+#include "traps.h"
+#include "terrain.h"
+#include "sceneManager.h"
 
 void player_init(void)
 {
@@ -125,15 +128,26 @@ void player_render(float dt)
 void respawn(CP_Vector* playerpos)
 {
     *playerpos = CP_Vector_Set(150.0f, 500.0f);
-    cheese->isActive = 1;
     cheese->Counter = 0;
 }
 
 void die(CP_Vector* playerpos)
 {
-    
     gPlayer.deathcount++;
     respawn(playerpos);
+    for (int i = 0; i < 26; i++)
+    {
+        cheese[i].isActive = 1;
+    }
+    for (int i = 0; i < 16; i++)
+    {
+        trap[i].isActive = 1;
+    }
+    for (int i = 24; i < 27; i++)
+    {
+        terrain[i].isActive = 1;
+    }
+    menu.page = 3;
 }
 
 void touch_water(CP_Vector* playerpos)

@@ -6,7 +6,7 @@
 
 #define GRAVITY 9.8f
 #define TERMINAL_VEL 400.0f
-#define PLAYER_MOVE_SPEED 200.0f
+#define PLAYER_MOVE_SPEED 250.0f
 
 typedef struct Player
 {
@@ -20,6 +20,7 @@ typedef struct Player
 	float jumpForce;
 	int deathcount, cheesecount;
 	int collidedWithCheese;
+	int collidedWithObs;
 	CP_Vector size;
 	CP_Vector velocity;
 	CP_Vector position;

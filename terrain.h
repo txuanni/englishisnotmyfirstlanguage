@@ -1,5 +1,4 @@
 void terrain_init(void);
-void spawn_terrain(void);
 
 struct Terrain
 {
@@ -7,4 +6,5 @@ struct Terrain
     CP_Vector Size;
     CP_Vector Buffer;
     CP_Image Image;
+    int isActive;
 }; struct Terrain terrain[30];

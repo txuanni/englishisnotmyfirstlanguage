@@ -10,6 +10,8 @@
 #include "camera.h"
 #include "menu.h"
 
+#define COLOR_WHITE CP_Color_Create(255, 255, 255, 255)
+
 CP_Vector playerPosition;
 CP_Vector playerGravity;
 CP_Vector playerVelocity;
@@ -17,6 +19,7 @@ CP_Vector player;
 CP_Image dead;
 CP_Image cheeseCounterImage;
 CP_Image backgroundImage = NULL;
+
 float timeElapsed;
 
 void background_init()
@@ -39,7 +42,7 @@ void drawbackground()
 {
 	
 	CP_Image_Draw(backgroundImage, 800, 450, 1600, 900, 255);
-
+	CP_Settings_Fill(COLOR_WHITE);
 	//Death Counter
 	CP_Image_Draw(dead, 45, 60, 80, 80, 255);
 	CP_Settings_TextSize(80.0f);
@@ -62,25 +65,89 @@ void gameplay()
 	camera_update(gPlayer.position, gPlayer.size, timeElapsed);
 	player_update(timeElapsed);
 
-	for (int i = 0; i < 30; i++)
-	{
-		//Collision_PlayerWithBadCheese(cheese[i].Position, cheese->Buffer);
-	}
 	
-	for (int i = 0; i < 30; i++)
+
+	//spawn good cheese and add points if collided
+	for (int i = 0; i < 21; i++)
 	{
-		
-		if (cheese->isActive)
+		if (cheese[i].isActive)
 		{
-			spawn_good_cheese();
-			//Collision_PlayerWithGoodCheese(cheese[i].Position, cheese->Buffer);
-			if (gPlayer.collidedWithCheese == 1)
+			CP_Image_Draw(cheese->Image, cheese[i].Position.x, cheese[i].Position.y, cheese->Size.x, cheese->Size.y, 255);
+			Collision_PlayerWithObstacle(cheese[i].Position, cheese->Buffer);
+			if (gPlayer.collidedWithObs == 1)
 			{
-				cheese->isActive = 0;
+				cheese[i].isActive = 0;
+				gPlayer.collidedWithObs = 0;
 				cheese->Counter++;
-				CP_Image_Free(&cheese[i].Image);
 			}
-		}		
+		}
+	}
+
+	//spawn bad cheese, reset and add death count
+	for (int i = 21; i < 27; i++)
+	{
+		if (cheese[i].isActive)
+		{
+			CP_Image_Draw(cheese->Image, cheese[i].Position.x, cheese[i].Position.y, cheese->Size.x, cheese->Size.y, 255);
+			Collision_PlayerWithObstacle(cheese[i].Position, cheese->Buffer);
+			if (gPlayer.collidedWithObs == 1)
+			{
+				cheese[i].isActive = 0;
+				gPlayer.collidedWithObs = 0;
+				die(&gPlayer.position);
+			}
+		}
+	}
+
+	//spawn good traps 
+	for (int i = 0; i < 11; i++)
+	{
+		if (trap[i].isActive)
+		{
+			CP_Image_Draw(trap->Image, trap[i].Position.x, trap[i].Position.y, trap->Size.x, trap->Size.y, 255);
+			Collision_PlayerWithObstacle(trap[i].Position, trap->Buffer);
+			if (gPlayer.collidedWithObs == 1)
+			{
+				trap[i].isActive = 0;
+				gPlayer.collidedWithObs = 0;
+			}
+		}
+	}
+
+	//spawn bad trap, reset and add death count
+	for (int i = 10; i < 16; i++)
+	{
+		if (trap[i].isActive)
+		{
+			CP_Image_Draw(trap->Image, trap[i].Position.x, trap[i].Position.y, trap->Size.x, trap->Size.y, 255);
+			Collision_PlayerWithObstacle(trap[i].Position, trap->Buffer);
+			if (gPlayer.collidedWithObs == 1)
+			{
+				trap[i].isActive = 0;
+				gPlayer.collidedWithObs = 0;
+				die(&gPlayer.position);
+			}
+		}
+	}
+
+	for (int i = 0; i < 24; i++)
+	{
+		CP_Image_Draw(terrain->Image, terrain[i].Position.x, terrain[i].Position.y, terrain[i].Size.x, terrain[i].Size.y, 255);
+		Collision_PlayerWithTerrain(terrain[i].Position, terrain[i].Buffer);
+	}
+
+	for (int i = 24; i < 27; i++)
+	{
+		if (terrain[i].isActive)
+		{
+			CP_Image_Draw(terrain->Image, terrain[i].Position.x, terrain[i].Position.y, terrain[i].Size.x, terrain[i].Size.y, 255);
+			Collision_PlayerWithObstacle(terrain[i].Position, terrain[i].Buffer);
+			if (gPlayer.collidedWithObs == 1)
+			{
+				terrain[i].isActive = 0;
+				gPlayer.collidedWithObs = 0;
+			}
+		}
 	}
 
 	for (int i = 0; i < 5; i++)
@@ -88,25 +155,18 @@ void gameplay()
 		Collision_PlayerWithPlatform(platforms[i].Position, platforms->Buffer);
 	}
 
-	for (int i = 0; i < 30; i++)
-	{
-		Collision_PlayerWithTerrain(terrain[i].Position, terrain[i].Buffer);
-	}
 
 	for (int i = 0; i < 30; i++)
 	{
 		//Collision_PlayerWithTraps(trap[i].Position, trap->Buffer);
 	}
+
+	//diee
 	Collision_PlayerWithDoor(door.Position, door.Buffer);
 	touch_water(&gPlayer.position);
 	//Render
 	spawn_platform();
-	spawn_terrain();
-
-	spawn_good_traps();
-	spawn_bad_traps();
 
 	spawn_door();
-	spawn_bad_cheese();
 	player_render(timeElapsed);
 }

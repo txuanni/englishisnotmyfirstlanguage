@@ -1,7 +1,5 @@
 #include "cprocessing.h"
 void cheese_init(void);
-void spawn_good_cheese(void);
-void spawn_bad_cheese(void);
 
 
 struct Cheeses
