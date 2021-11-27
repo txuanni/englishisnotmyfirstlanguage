@@ -8,4 +8,5 @@ struct Doors
     CP_Vector Size;
     CP_Vector Buffer;
     CP_Image Image;
+    CP_Sound SFX;
 }; struct Doors door;

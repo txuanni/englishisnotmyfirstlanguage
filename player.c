@@ -31,6 +31,10 @@ void player_init(void)
     gPlayer.left1GFX = CP_Image_Load("./Assets/leftwalk_2.png");
     gPlayer.rightGFX = CP_Image_Load("./Assets/walk_1.png");
     gPlayer.right1GFX = CP_Image_Load("./Assets/walk_2.png");
+
+    gPlayer.jumpSFX = CP_Sound_Load("./Assets/jump.wav");
+    gPlayer.drownSFX = CP_Sound_Load("./Assets/drown.wav");
+    gPlayer.deathSFX = CP_Sound_Load("./Assets/death.wav");
 }
 
 void player_update(float dt)
@@ -72,6 +76,7 @@ void player_update(float dt)
         gPlayer.isJumping = 1; //Start jumping
         gPlayer.canJump = 0; //Cant jump again once u start jumping
         gPlayer.velocity.y = gPlayer.jumpForce; //Apply instant velocity lol
+        CP_Sound_Play(gPlayer.jumpSFX);
     }
 
     //Apply gravity
@@ -155,6 +160,7 @@ void touch_water(CP_Vector* playerpos)
     if ((*playerpos).y >= 900)
     {
         die(playerpos);
+        CP_Sound_Play(gPlayer.drownSFX);
     }
 }
 

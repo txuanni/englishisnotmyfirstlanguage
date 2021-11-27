@@ -30,6 +30,9 @@ typedef struct Player
 	CP_Image left1GFX;
 	CP_Image rightGFX;
 	CP_Image right1GFX;
+	CP_Sound jumpSFX;
+	CP_Sound drownSFX;
+	CP_Sound deathSFX;
 }Player;
 
 //This struct will hold all our player variables

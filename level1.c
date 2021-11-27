@@ -19,6 +19,8 @@ CP_Vector player;
 CP_Image dead;
 CP_Image cheeseCounterImage;
 CP_Image backgroundImage = NULL;
+CP_Sound eatSFX;
+
 
 float timeElapsed;
 
@@ -34,7 +36,8 @@ void background_init()
 	traps_init();
 	door_init();
 	camera_init(playerPosition);
-
+	eatSFX = CP_Sound_Load("./Assets/eat.wav");
+	
 	
 }
 
@@ -79,6 +82,7 @@ void gameplay()
 				cheese[i].isActive = 0;
 				gPlayer.collidedWithObs = 0;
 				cheese->Counter++;
+				CP_Sound_Play(eatSFX);
 			}
 		}
 	}
@@ -161,7 +165,7 @@ void gameplay()
 		//Collision_PlayerWithTraps(trap[i].Position, trap->Buffer);
 	}
 
-	//diee
+	//die
 	Collision_PlayerWithDoor(door.Position, door.Buffer);
 	touch_water(&gPlayer.position);
 	//Render

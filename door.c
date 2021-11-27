@@ -6,6 +6,7 @@ void door_init(void)
 	door.Size = CP_Vector_Set(120, 120);
 	door.Buffer = CP_Vector_Set(60, 60);
 	door.Position = CP_Vector_Set(9780, 680);
+	door.SFX = CP_Sound_Load("./Assets/door.wav");
 	
 }
 

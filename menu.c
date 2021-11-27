@@ -11,6 +11,7 @@ CP_Vector startButtonPosition;
 
 
 
+
 void menu_init()
 {	
 
@@ -24,6 +25,7 @@ void menu_init()
 
 	button[1].Position = CP_Vector_Set(370, 400); //controls button
 	button[1].TextPosition = CP_Vector_Set(400, 450); //controls text
+	
 	
 }
 
