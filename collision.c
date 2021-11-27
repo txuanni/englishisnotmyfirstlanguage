@@ -184,6 +184,7 @@ void collision_check_button4(CP_Vector buttonPosition) //game over button collis
     {
         menu.page = 0; //return to menu page
         CP_Sound_Play(clickSFX);
+        gPlayer.deathcount = 0;
     }
 }
 

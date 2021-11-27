@@ -13,14 +13,20 @@ void controls_init()
 	button[2].Position = CP_Vector_Set(20, 20); //backbutton
 	button[2].TextPosition = CP_Vector_Set(50, 70); //back text
 
-	button[3].Position = CP_Vector_Set(250, 380); //A button
-	button[3].TextPosition = CP_Vector_Set(270, 430); //A text
+	button[3].Position = CP_Vector_Set(150, 380); //A button
+	button[3].TextPosition = CP_Vector_Set(170, 430); //A text
 
-	button[4].Position = CP_Vector_Set(360, 380); //D button
-	button[4].TextPosition = CP_Vector_Set(380, 430); //D text
+	button[4].Position = CP_Vector_Set(230, 380); //D button
+	button[4].TextPosition = CP_Vector_Set(250, 430); //D text
 
-	button[5].Position = CP_Vector_Set(150, 500); //space button
-	button[5].TextPosition = CP_Vector_Set(270, 550); //space text
+	button[5].Position = CP_Vector_Set(410, 380); //R button
+	button[5].TextPosition = CP_Vector_Set(430, 430); //R text
+
+	button[6].Position = CP_Vector_Set(490, 380); //L button
+	button[6].TextPosition = CP_Vector_Set(510, 430); //L text
+
+	button[7].Position = CP_Vector_Set(150, 500); //space button
+	button[7].TextPosition = CP_Vector_Set(270, 550); //space text
 }
 
 void drawControlButtons()
@@ -28,20 +34,25 @@ void drawControlButtons()
 	CP_Settings_Fill(COLOR_WHITE);
 	CP_Graphics_DrawRect(button[2].Position.x, button[2].Position.y, button->Size.x, button->Size.y);
 
-	for (int i = 3; i < 5; i++)
+	for (int i = 3; i < 7; i++)
 	{
 		CP_Graphics_DrawRect(button[i].Position.x, button[i].Position.y, button->KeyButtonSize.x, button->KeyButtonSize.y);
 	}
 
-	CP_Graphics_DrawRect(button[5].Position.x, button[5].Position.y, 400, button->KeyButtonSize.y);
+	CP_Graphics_DrawRect(button[7].Position.x, button[7].Position.y, 400, button->KeyButtonSize.y);
 	
 
 	CP_Settings_Fill(COLOR_BLACK);
 	CP_Font_DrawText("Back", button[2].TextPosition.x, button[2].TextPosition.y);
 	CP_Font_DrawText("A", button[3].TextPosition.x, button[3].TextPosition.y);
 	CP_Font_DrawText("D", button[4].TextPosition.x, button[4].TextPosition.y);
-	CP_Font_DrawText("Move", 600, 430);
 
-	CP_Font_DrawText("Spacebar", button[5].TextPosition.x, button[5].TextPosition.y);
-	CP_Font_DrawText("Jump", 600, 550);
+	CP_Font_DrawText("OR", 320, 430);
+
+	CP_Font_DrawText("R", button[5].TextPosition.x, button[5].TextPosition.y);
+	CP_Font_DrawText("L", button[6].TextPosition.x, button[6].TextPosition.y);
+	CP_Font_DrawText("Move", 650, 430);
+
+	CP_Font_DrawText("Spacebar", button[7].TextPosition.x, button[7].TextPosition.y);
+	CP_Font_DrawText("Jump", 650, 550);
 }
