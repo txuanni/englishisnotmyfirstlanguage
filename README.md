@@ -1,7 +1,7 @@
-englishisnotmyfirstlanguage
+EnglishIsNotMyFirstLanguage \n
 
-team members:
-Teo Xuan Ni
-Qairul
+Team Members: \n
+Teo Xuan Ni \n
+Qairul \n
 David Tan
-Chong Xin Yong
+
