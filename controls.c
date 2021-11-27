@@ -19,11 +19,11 @@ void controls_init()
 	button[4].Position = CP_Vector_Set(230, 380); //D button
 	button[4].TextPosition = CP_Vector_Set(250, 430); //D text
 
-	button[5].Position = CP_Vector_Set(410, 380); //R button
-	button[5].TextPosition = CP_Vector_Set(430, 430); //R text
+	button[5].Position = CP_Vector_Set(410, 380); //Right button
+	button[5].TextPosition = CP_Vector_Set(420, 430); //Right text
 
-	button[6].Position = CP_Vector_Set(490, 380); //L button
-	button[6].TextPosition = CP_Vector_Set(510, 430); //L text
+	button[6].Position = CP_Vector_Set(490, 380); //Left button
+	button[6].TextPosition = CP_Vector_Set(505, 430); //Left text
 
 	button[7].Position = CP_Vector_Set(150, 500); //space button
 	button[7].TextPosition = CP_Vector_Set(270, 550); //space text
@@ -49,8 +49,8 @@ void drawControlButtons()
 
 	CP_Font_DrawText("OR", 320, 430);
 
-	CP_Font_DrawText("R", button[5].TextPosition.x, button[5].TextPosition.y);
-	CP_Font_DrawText("L", button[6].TextPosition.x, button[6].TextPosition.y);
+	CP_Font_DrawText("<-", button[5].TextPosition.x, button[5].TextPosition.y);
+	CP_Font_DrawText("->", button[6].TextPosition.x, button[6].TextPosition.y);
 	CP_Font_DrawText("Move", 650, 430);
 
 	CP_Font_DrawText("Spacebar", button[7].TextPosition.x, button[7].TextPosition.y);
