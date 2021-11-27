@@ -165,7 +165,7 @@ void collision_check_button2(CP_Vector buttonPosition) //control button collisio
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
         menu.page = 2;
-        CP_Sound_Play(meunu.ClickSFX);
+        CP_Sound_Play(menu.ClickSFX);
     }
 }
 

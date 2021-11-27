@@ -20,7 +20,7 @@ CP_Image dead;
 CP_Image cheeseCounterImage;
 CP_Image backgroundImage = NULL;
 CP_Sound eatSFX;
-
+CP_Sound trapSFX;
 
 float timeElapsed;
 
@@ -37,7 +37,7 @@ void background_init()
 	door_init();
 	camera_init(playerPosition);
 	eatSFX = CP_Sound_Load("./Assets/eat.wav");
-	
+	trapSFX = CP_Sound_Load("./Assets/death.wav");
 	
 }
 
@@ -99,6 +99,7 @@ void gameplay()
 				cheese[i].isActive = 0;
 				gPlayer.collidedWithObs = 0;
 				die(&gPlayer.position);
+				CP_Sound_Play(trapSFX);
 			}
 		}
 	}
@@ -114,6 +115,7 @@ void gameplay()
 			{
 				trap[i].isActive = 0;
 				gPlayer.collidedWithObs = 0;
+				CP_Sound_Play(eatSFX);
 			}
 		}
 	}
@@ -130,6 +132,7 @@ void gameplay()
 				trap[i].isActive = 0;
 				gPlayer.collidedWithObs = 0;
 				die(&gPlayer.position);
+				CP_Sound_Play(trapSFX);
 			}
 		}
 	}
