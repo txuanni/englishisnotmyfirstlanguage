@@ -76,7 +76,8 @@ void player_update(float dt)
         gPlayer.isJumping = 1; //Start jumping
         gPlayer.canJump = 0; //Cant jump again once u start jumping
         gPlayer.velocity.y = gPlayer.jumpForce; //Apply instant velocity lol
-        CP_Sound_Play(gPlayer.jumpSFX);
+        /*CP_Sound_Play(gPlayer.jumpSFX);*/
+        CP_Sound_PlayAdvanced(gPlayer.jumpSFX, 0.2f, 1.5, FALSE, 0);
     }
 
     //Apply gravity

@@ -23,6 +23,7 @@ CP_Sound eatSFX = NULL;
 CP_Sound trapSFX = NULL;
 
 float timeElapsed;
+float random_float;
 
 void background_init()
 {
@@ -38,6 +39,7 @@ void background_init()
 	camera_init(playerPosition);
 	eatSFX = CP_Sound_Load("./Assets/eat.wav");
 	trapSFX = CP_Sound_Load("./Assets/death.wav");
+	random_float = CP_Random_RangeFloat(0.9f, 1.1f);
 	
 }
 
@@ -88,7 +90,8 @@ void gameplay()
 				cheese[i].isActive = 0;
 				gPlayer.collidedWithObs = 0;
 				cheese->Counter++;
-				CP_Sound_Play(eatSFX);
+				/*CP_Sound_Play(eatSFX);*/
+				CP_Sound_PlayAdvanced(eatSFX, 0.5f,random_float, FALSE, 0);
 			}
 		}
 	}
@@ -106,6 +109,7 @@ void gameplay()
 				gPlayer.collidedWithObs = 0;
 				die(&gPlayer.position);
 				CP_Sound_Play(trapSFX);
+				CP_Sound_PlayAdvanced(trapSFX, 0.5f, random_float, FALSE, 0);
 			}
 		}
 	}
@@ -121,7 +125,8 @@ void gameplay()
 			{
 				trap[i].isActive = 0;
 				gPlayer.collidedWithObs = 0;
-				CP_Sound_Play(eatSFX);
+				/*CP_Sound_Play(eatSFX);*/
+				CP_Sound_PlayAdvanced(eatSFX, 0.3f, random_float, FALSE, 0);
 			}
 		}
 	}
@@ -138,7 +143,8 @@ void gameplay()
 				trap[i].isActive = 0;
 				gPlayer.collidedWithObs = 0;
 				die(&gPlayer.position);
-				CP_Sound_Play(trapSFX);
+				/*CP_Sound_Play(trapSFX);*/
+				CP_Sound_PlayAdvanced(trapSFX, 0.2f, random_float, FALSE, 0);
 			}
 		}
 	}
