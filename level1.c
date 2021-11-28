@@ -74,7 +74,7 @@ void gameplay()
 	CP_Settings_TextSize(50.0f);
 	CP_Settings_Fill(COLOR_WHITE);
 	CP_Font_DrawText("There's a door awaiting the mouse at the end for it's escape.", -500, 300);
-	CP_Font_DrawText("Cheese and traps maybe harmless or harmful, be cautious... ", -500, 350);
+	CP_Font_DrawText("Cheese and traps may either be harmless or harmful, be cautious... ", -500, 350);
 	CP_Font_DrawText("Also, some of those terrains do look suspicious...", -500, 400);
 	CP_Font_DrawText("Are you able to reach the end? Good luck!", -500, 450);
 
