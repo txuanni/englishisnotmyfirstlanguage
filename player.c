@@ -76,8 +76,7 @@ void player_update(float dt)
         gPlayer.isJumping = 1; //Start jumping
         gPlayer.canJump = 0; //Cant jump again once u start jumping
         gPlayer.velocity.y = gPlayer.jumpForce; //Apply instant velocity lol
-        /*CP_Sound_Play(gPlayer.jumpSFX);*/
-        CP_Sound_PlayAdvanced(gPlayer.jumpSFX, 0.2f, 1.5, FALSE, 0);
+        CP_Sound_PlayAdvanced(gPlayer.jumpSFX, 0.1f, 1.5, FALSE, 0);
     }
 
     //Apply gravity
@@ -90,7 +89,6 @@ void player_update(float dt)
     }
     else
     {
-        //printf("Player on ground!\n");
         gPlayer.velocity.y = 0.0f;
     }
     //Calculate movement
@@ -123,12 +121,6 @@ void player_render(float dt)
         CP_Image_Draw(gPlayer.idle1GFX, gPlayer.position.x, gPlayer.position.y, gPlayer.size.x, gPlayer.size.y, 255);
     }
     printf("Player pos: %.2f, %.2f\n", gPlayer.position.x, gPlayer.position.y);
-
-   
-
-    //TODO: Change graphics based on moving left/moving right
-    //Hint: use if/else or switch statements
-
 }
 
 void respawn(CP_Vector* playerpos)

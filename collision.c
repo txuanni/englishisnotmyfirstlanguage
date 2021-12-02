@@ -139,7 +139,7 @@ void Collision_PlayerWithDoor(CP_Vector Doorpos, CP_Vector DoorSize)
     if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), Doorpos, DoorSize))
     {
         menu.page = 4;
-        CP_Sound_Play(door.SFX);
+        CP_Sound_PlayAdvanced(door.SFX, 0.2f, 1.5, FALSE, 0);
     }
 }
 
@@ -156,7 +156,7 @@ void collision_check_button1(CP_Vector buttonPosition) //start button collision
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
         menu.page = 1;
-        CP_Sound_Play(clickSFX);
+        CP_Sound_PlayAdvanced(clickSFX, 0.2f, 1.5, FALSE, 0);
     }
 }
 
@@ -165,7 +165,7 @@ void collision_check_button2(CP_Vector buttonPosition) //control button collisio
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
         menu.page = 2;
-        CP_Sound_Play(clickSFX);
+        CP_Sound_PlayAdvanced(clickSFX, 0.2f, 1.5, FALSE, 0);
     }
 }
 
@@ -174,7 +174,7 @@ void collision_check_button3(CP_Vector buttonPosition) //back button collision
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
         menu.page = 0; //return to menu page
-        CP_Sound_Play(clickSFX);
+        CP_Sound_PlayAdvanced(clickSFX, 0.2f, 1.5, FALSE, 0);
     }
 }
 
@@ -183,7 +183,7 @@ void collision_check_button4(CP_Vector buttonPosition) //game over button collis
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
     {
         menu.page = 0; //return to menu page
-        CP_Sound_Play(clickSFX);
+        CP_Sound_PlayAdvanced(clickSFX, 0.2f, 1.5, FALSE, 0);
         gPlayer.deathcount = 0;
     }
 }
