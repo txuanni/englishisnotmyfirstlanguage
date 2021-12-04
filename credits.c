@@ -85,12 +85,14 @@ void drawCredits()
 	CP_Font_DrawText("Teo Xuan Ni", 1000, 350);
 	CP_Font_DrawText("David Tan Wei Jie", 1000, 400);
 	CP_Font_DrawText("Qairul Shazriz Bin Shamsul", 1000, 450);
+	CP_Font_DrawText("Special Thanks", 1000, 500);
+	CP_Font_DrawText("Chong Xin Yong", 1000, 550);
 	
 	//professors
 	CP_Font_DrawText("Cheng Ding Xiang (Professor)", 1000, 650);
 	CP_Font_DrawText("Gerald Wong (Professor)", 1000, 700);
 
 	CP_Settings_TextSize(30.0f);
-	CP_Font_DrawText("www.digipen.edu", 750, 870);
-	CP_Font_DrawText("All content copyright 2021 DigiPen Institute of Technology Singapore. All Rights Reserved", 500, 890);
+	CP_Font_DrawText("www.digipen.edu", 730, 870);
+	CP_Font_DrawText("All content copyright 2021 DigiPen Institute of Technology Singapore. All Rights Reserved", 450, 890);
 }

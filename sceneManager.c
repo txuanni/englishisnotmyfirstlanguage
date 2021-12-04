@@ -161,11 +161,14 @@ void switchPage()
 	//starting logo screen
 	else if (menu.page == 6)
 	{
-		fadeOutTime += 100 * timeElapsed;
+		fadeOutTime += 80 * timeElapsed;
 		if (fadeOutTime < 255.0f)
 		{
 			CP_Graphics_ClearBackground(CP_Color_Create(255, 255, 255, 255));
 			CP_Image_Draw(logoImage, 1600 / 2.0f, 900 / 2.0f, 1525, 445, (int)fadeOutTime);
+			CP_Settings_TextSize(30.0f);
+			CP_Settings_Fill(COLOR_BLACK);
+			CP_Font_DrawText("All content copyright 2021 DigiPen Institute of Technology Singapore. All Rights Reserved", 450, 890);
 			if (CP_Input_MouseClicked())
 			{
 				fadeOutTime = 255;
