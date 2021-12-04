@@ -1,3 +1,10 @@
+/*!
+@file controls.c
+@author Teo Xuan Ni (t.xuanni@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains code to display control page
+*//*______________________________________________________________*/
 #include "cprocessing.h"
 #include "sceneManager.h"
 #include "collision.h"
@@ -6,6 +13,11 @@
 #define COLOR_BLACK CP_Color_Create(0, 0, 0, 255)
 #define COLOR_WHITE CP_Color_Create(255, 255, 255, 255)
 
+/*!
+@brief Initialise position of the buttons
+@param void
+@return void
+*//*______________________________________________________________*/
 void controls_init()
 {
 	button->KeyButtonSize = CP_Vector_Set(70, 70);
@@ -29,6 +41,11 @@ void controls_init()
 	button[7].TextPosition = CP_Vector_Set(270, 550); //space text
 }
 
+/*!
+@brief Render the control buttons
+@param void
+@return void
+*//*______________________________________________________________*/
 void drawControlButtons()
 {
 	CP_Settings_Fill(COLOR_WHITE);

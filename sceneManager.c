@@ -1,3 +1,11 @@
+/*!
+@file sceneManager.c
+@author Teo Xuan Ni (t.xuanni@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains code to manage the game scenes and switch
+between pages
+*//*______________________________________________________________*/
 #include <stdio.h>
 #include "sceneManager.h"
 #include "menu.h"
@@ -8,17 +16,27 @@
 #include "cheese.h"
 #include "traps.h"
 #include "terrain.h"
+#include "credits.h"
 
 #define COLOR_BLACK CP_Color_Create(0, 0, 0, 200)
 #define COLOR_WHITE CP_Color_Create(255, 255, 255, 255)
 CP_Image dead;
 CP_Image cheeseCounterImage;
+CP_Image logoImage = NULL;
 CP_Sound clickSFX = NULL;
 CP_Font font;
 CP_Vector menuButtonPosition;
+float fadeOutTime;
+float timeElapsed;
 
+/*!
+@brief Initialise the scenes
+@param void
+@return void
+*//*______________________________________________________________*/
 void sceneManager_init()
 {
+	logoImage = CP_Image_Load("./Assets/digipen_logo.png");
 	font = CP_Font_Load("./Assets/Kalam-Light.ttf");
 	door.SFX = CP_Sound_Load("./Assets/door.wav");
 	clickSFX = CP_Sound_Load("./Assets/Button.wav");
@@ -26,12 +44,19 @@ void sceneManager_init()
 	menu_init();
 	controls_init();
 	background_init();
-	menu.page = 0;
+	credits_init();
+	menu.page = 6;
 	menuButtonPosition = CP_Vector_Set(600, 600);
 }
 
+/*!
+@brief Switch between pages with respect to the actions/conditions
+@param void
+@return void
+*//*______________________________________________________________*/
 void switchPage()
 {
+	//menu page
 	if (menu.page == 0)
 	{
 		respawn(&gPlayer.position);
@@ -52,19 +77,26 @@ void switchPage()
 		drawButtons();
 		collision_check_button1(button[0].Position);
 		collision_check_button2(button[1].Position);
+		collision_check_button5(button[8].Position);
 	}
+	
+	//gameplay page
 	else if (menu.page == 1)
 	{
+		CP_Graphics_ClearBackground(CP_Color_Create(255, 255, 255, 255));
 		drawbackground();
 		gameplay();
 	}
 
+	//control page
 	else if (menu.page == 2)
 	{
 		drawbackgroundUI();
 		drawControlButtons();
 		collision_check_button3(button[2].Position);
 	}
+	
+	//death page
 	else if (menu.page == 3)
 	{
 		CP_Settings_TextSize(80.0f);
@@ -84,6 +116,7 @@ void switchPage()
 		}
 	}
 
+	//game over page
 	else if (menu.page == 4)
 	{
 		CP_Settings_TextSize(80.0f);
@@ -107,5 +140,32 @@ void switchPage()
 		CP_Settings_Fill(COLOR_BLACK);
 		CP_Font_DrawText("Back to menu", 630, 660);
 		collision_check_button4(menuButtonPosition);
+	}
+
+	//credits page
+	else if (menu.page == 5)
+	{
+		drawbackgroundCreds();
+		drawCredits();
+		collision_check_button3(button[2].Position);
+	}
+
+	//starting logo screen
+	else if (menu.page == 6)
+	{
+		fadeOutTime += 100 * timeElapsed;
+		if (fadeOutTime < 255.0f)
+		{
+			CP_Graphics_ClearBackground(CP_Color_Create(255, 255, 255, 255));
+			CP_Image_Draw(logoImage, 1600 / 2.0f, 900 / 2.0f, 1525, 445, (int) fadeOutTime);
+			if (CP_Input_MouseClicked())
+			{
+				fadeOutTime = 255;
+			}
+		}
+		else
+		{
+			menu.page = 0;
+		}
 	}
 }

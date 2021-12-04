@@ -1,3 +1,12 @@
+/*!
+@file collision.c
+@author David Tan Wei Jie (tan.d@digipen.edu)
+        Teo Xuan Ni (t.xuanni@digipen.edu)
+        Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains code to check for collisions
+*//*______________________________________________________________*/
 #include <stdio.h>
 #include "cprocessing.h"
 #include "collision.h"
@@ -10,15 +19,23 @@
 
 CP_Sound clickSFX;
 
-
-
+/*!
+@brief Check the collision using AABB
+@param CP_Vector aPos, CP_Vector aSize, CP_Vector bPos, CP_Vector 
+bSize
+@return int
+*//*______________________________________________________________*/
 int CheckAABB_Collision(CP_Vector aPos, CP_Vector aSize, CP_Vector bPos, CP_Vector bSize)
 {
     return (aPos.x + aSize.x >= bPos.x - bSize.x) && (aPos.x - aSize.x <= bPos.x + bSize.x) &&
         (aPos.y + aSize.y >= bPos.y - bSize.y) && (aPos.y - aSize.y <= bPos.y + bSize.y);
-
 }
 
+/*!
+@brief Check the player collision with platform 
+@param CP_Vector platformPos, CP Vector platformSize
+@return void
+*//*______________________________________________________________*/
 void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize)
 {
     if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), platformPos, platformSize))
@@ -72,6 +89,11 @@ void Collision_PlayerWithPlatform(CP_Vector platformPos, CP_Vector platformSize)
     }
 }
 
+/*!
+@brief Check the player collision with terrain
+@param CP_Vector terrainPos, CP Vector terrainSize
+@return void
+*//*______________________________________________________________*/
 void Collision_PlayerWithTerrain(CP_Vector terrainPos, CP_Vector terrainSize)
 {
     if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), terrainPos, terrainSize))
@@ -125,6 +147,11 @@ void Collision_PlayerWithTerrain(CP_Vector terrainPos, CP_Vector terrainSize)
     }
 }
 
+/*!
+@brief Check the player collision with input Obstacles
+@param CP_Vector Obpos, CP Vector ObsSize
+@return void
+*//*______________________________________________________________*/
 void Collision_PlayerWithObstacle(CP_Vector Obspos, CP_Vector ObsSize)
 {
     if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), Obspos, ObsSize))
@@ -134,6 +161,11 @@ void Collision_PlayerWithObstacle(CP_Vector Obspos, CP_Vector ObsSize)
     }
 }
 
+/*!
+@brief Check the player collision with door
+@param CP_Vector Doorpos, CP Vector DoorSize
+@return void
+*//*______________________________________________________________*/
 void Collision_PlayerWithDoor(CP_Vector Doorpos, CP_Vector DoorSize)
 {
     if (CheckAABB_Collision(gPlayer.position, CP_Vector_Scale(gPlayer.size, 0.5f), Doorpos, DoorSize))
@@ -143,14 +175,23 @@ void Collision_PlayerWithDoor(CP_Vector Doorpos, CP_Vector DoorSize)
     }
 }
 
-
+/*!
+@brief Check collision with a button
+@param float mousepositionx, float mousepositiony, CP_Vector 
+buttonPosition
+@return int
+*//*______________________________________________________________*/
 int is_btn_colliding(float mousepositionx, float mousepositiony, CP_Vector buttonPosition)
 {
     return mousepositionx >= buttonPosition.x && mousepositionx <= buttonPosition.x + button->Size.x &&
         mousepositiony >= buttonPosition.y && mousepositiony <= buttonPosition.y + button->Size.y;
 }
 
-
+/*!
+@brief Check collision with start button
+@param CP_Vector buttonPosition
+@return void
+*//*______________________________________________________________*/
 void collision_check_button1(CP_Vector buttonPosition) //start button collision
 {
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
@@ -160,6 +201,11 @@ void collision_check_button1(CP_Vector buttonPosition) //start button collision
     }
 }
 
+/*!
+@brief Check collision with control button
+@param CP_Vector buttonPosition
+@return void
+*//*______________________________________________________________*/
 void collision_check_button2(CP_Vector buttonPosition) //control button collision
 {
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
@@ -169,6 +215,11 @@ void collision_check_button2(CP_Vector buttonPosition) //control button collisio
     }
 }
 
+/*!
+@brief Check collision with back button
+@param CP_Vector buttonPosition
+@return void
+*//*______________________________________________________________*/
 void collision_check_button3(CP_Vector buttonPosition) //back button collision
 {
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
@@ -178,6 +229,11 @@ void collision_check_button3(CP_Vector buttonPosition) //back button collision
     }
 }
 
+/*!
+@brief Check collision with back button in game over
+@param CP_Vector buttonPosition
+@return void
+*//*______________________________________________________________*/
 void collision_check_button4(CP_Vector buttonPosition) //game over button collision
 {
     if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
@@ -185,6 +241,20 @@ void collision_check_button4(CP_Vector buttonPosition) //game over button collis
         menu.page = 0; //return to menu page
         CP_Sound_PlayAdvanced(clickSFX, 0.2f, 1.5, FALSE, 0);
         gPlayer.deathcount = 0;
+    }
+}
+
+/*!
+@brief Check collision with back button in credits
+@param CP_Vector buttonPosition
+@return void
+*//*______________________________________________________________*/
+void collision_check_button5(CP_Vector buttonPosition) //credits button collision
+{
+    if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
+    {
+        menu.page = 5;
+        CP_Sound_PlayAdvanced(clickSFX, 0.2f, 1.5, FALSE, 0);
     }
 }
 

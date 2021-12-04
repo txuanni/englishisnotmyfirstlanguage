@@ -1,3 +1,12 @@
+/*!
+@file player.h
+@author Teo Xuan Ni (t.xuanni@digipen.edu)
+		David Tan Wei Jie (tan.d@digipen.edu)
+		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains declarations for player.c
+*//*______________________________________________________________*/
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -38,18 +47,46 @@ typedef struct Player
 //This struct will hold all our player variables
 Player gPlayer;
 
-//Initialise the player
+/*!
+@brief Initialise the player
+@param void
+@return void
+*//*______________________________________________________________*/
 void player_init(void);
 
-//Update the player
+/*!
+@brief This function contains code fror player's movement
+@param float dt
+@return void
+*//*______________________________________________________________*/
 void player_update(float dt);
 
-//Render the player
+/*!
+@brief renders the player
+@param float dt
+@return void
+*//*______________________________________________________________*/
 void player_render(float dt);
 
+/*!
+@brief Respawns the player at a certain position and remove points
+@param CP_Vector playerpos
+@return void
+*//*______________________________________________________________*/
 void die(CP_Vector* playerpos);
 
+/*!
+@brief If player dies, respawn and set everything back to default
+and load death screen
+@param CP_Vector playerpos
+@return void
+*//*______________________________________________________________*/
 void touch_water(CP_Vector *playerpos);
 
+/*!
+@brief If player touches the water, kill the player
+@param CP_Vector playerpos
+@return void
+*//*______________________________________________________________*/
 void respawn(CP_Vector* playerpos);
 #endif // !PLAYER_H

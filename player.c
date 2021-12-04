@@ -1,5 +1,13 @@
+/*!
+@file player.c
+@author Teo Xuan Ni (t.xuanni@digipen.edu)
+        David Tan Wei Jie (tan.d@digipen.edu)
+        Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains code for player's movement and response
+*//*______________________________________________________________*/
 #include <stdio.h>
-
 #include "collision.h"
 #include "player.h"
 #include "cheese.h"
@@ -7,6 +15,11 @@
 #include "terrain.h"
 #include "sceneManager.h"
 
+/*!
+@brief Initialise the player
+@param void
+@return void
+*//*______________________________________________________________*/
 void player_init(void)
 {
     gPlayer.deathcount = 0;
@@ -37,6 +50,11 @@ void player_init(void)
     gPlayer.deathSFX = CP_Sound_Load("./Assets/death.wav");
 }
 
+/*!
+@brief This function contains code fror player's movement
+@param float dt
+@return void
+*//*______________________________________________________________*/
 void player_update(float dt)
 {
     //Player movement
@@ -75,8 +93,7 @@ void player_update(float dt)
         gPlayer.isGrounded = 0;
         gPlayer.isJumping = 1; //Start jumping
         gPlayer.canJump = 0; //Cant jump again once u start jumping
-        gPlayer.velocity.y = gPlayer.jumpForce; //Apply instant velocity lol
-        CP_Sound_PlayAdvanced(gPlayer.jumpSFX, 0.1f, 1.5, FALSE, 0);
+        gPlayer.velocity.y = gPlayer.jumpForce; //Apply instant velocity
     }
 
     //Apply gravity
@@ -100,6 +117,11 @@ void player_update(float dt)
     gPlayer.isGrounded = 0;
 }
 
+/*!
+@brief renders the player
+@param float dt
+@return void
+*//*______________________________________________________________*/
 void player_render(float dt)
 {
 
@@ -123,12 +145,23 @@ void player_render(float dt)
     printf("Player pos: %.2f, %.2f\n", gPlayer.position.x, gPlayer.position.y);
 }
 
+/*!
+@brief Respawns the player at a certain position and remove points
+@param CP_Vector playerpos
+@return void
+*//*______________________________________________________________*/
 void respawn(CP_Vector* playerpos)
 {
     *playerpos = CP_Vector_Set(150.0f, 500.0f);
     cheese->Counter = 0;
 }
 
+/*!
+@brief If player dies, respawn and set everything back to default
+and load death screen
+@param CP_Vector playerpos
+@return void
+*//*______________________________________________________________*/
 void die(CP_Vector* playerpos)
 {
     gPlayer.deathcount++;
@@ -148,6 +181,11 @@ void die(CP_Vector* playerpos)
     menu.page = 3;
 }
 
+/*!
+@brief If player touches the water, kill the player
+@param CP_Vector playerpos
+@return void
+*//*______________________________________________________________*/
 void touch_water(CP_Vector* playerpos)
 {
     if ((*playerpos).y >= 900)

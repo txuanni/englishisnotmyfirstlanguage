@@ -1,3 +1,10 @@
+/*!
+@file camera.c
+@author Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains code to move the camera with the mouse
+*//*______________________________________________________________*/
 #include "cprocessing.h"
 #include <stdio.h>
 #include "player.h"
@@ -13,6 +20,11 @@ static CP_Matrix scaleMatrix, translationMatrix;
 
 CP_Image mouseCamera = NULL;
 
+/*!
+@brief Initialise the camera
+@param CP_Vector playerPosition
+@return void
+*//*______________________________________________________________*/
 void camera_init(CP_Vector playerPosition)
 {
 	scaleMatrix = CP_Matrix_Identity();
@@ -24,6 +36,11 @@ void camera_init(CP_Vector playerPosition)
 
 }
 
+/*!
+@brief Updates the camera to follow the player
+@param CP_Vector playerPosition, CP_Vector playerSize
+@return void
+*//*______________________________________________________________*/
 void camera_update(CP_Vector playerPosition, CP_Vector playerSize,
 	float timeElapsed)
 {
@@ -49,6 +66,4 @@ void camera_update(CP_Vector playerPosition, CP_Vector playerSize,
 	transform = CP_Matrix_Multiply(translationMatrix, transform);
 
 	CP_Settings_ApplyMatrix(transform);
-
-
 }

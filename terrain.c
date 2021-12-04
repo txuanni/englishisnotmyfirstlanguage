@@ -1,7 +1,19 @@
-#include "cprocessing.h"
+/*!
+@file terrain.c
+@author Teo Xuan Ni (t.xuanni@digipen.edu)
+		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains code for setting the terrains positions
+and size
+*//*______________________________________________________________*/
 #include "terrain.h"
 
-
+/*!
+@brief Initialise the terrain position, size and buffer
+@param void
+@return void
+*//*______________________________________________________________*/
 void terrain_init(void)
 {
 	terrain->Image = CP_Image_Load("./Assets/terrain.png");

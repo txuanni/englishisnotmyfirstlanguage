@@ -1,5 +1,18 @@
+/*!
+@file traps.c
+@author Teo Xuan Ni (t.xuanni@digipen.edu)
+		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains code for traps position, size and buffer
+*//*______________________________________________________________*/
 #include "traps.h"
 
+/*!
+@brief Initialise the trap position, size and buffer
+@param void
+@return void
+*//*______________________________________________________________*/
 void traps_init(void)
 {
 	trap->Image = CP_Image_Load("./Assets/traps.png");

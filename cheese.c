@@ -1,6 +1,20 @@
+/*!
+@file cheese.c
+@author Teo Xuan Ni (t.xuanni@digipen.edu)
+        Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains code to position the cheeses
+*//*______________________________________________________________*/
+
 #include "cheese.h"
 #include "player.h"
 
+/*!
+@brief Initialise the cheese positions
+@param void
+@return void
+*//*______________________________________________________________*/
 void cheese_init(void)
 {
     cheese->Image = CP_Image_Load("./Assets/cheese.png");

@@ -1,30 +1,29 @@
 /*!
-@file level1.h
-@author David Tan Wei Jie (tan.d@digipen.edu)
-		Teo Xuan Ni (t.xuanni@digipen.edu)
-		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
+@file credits.h
+@author Teo Xuan Ni (t.xuanni@digipen.edu)
 @course GAM
 @section AM Section
-@brief Declaration of code for level1.c
+@brief This file contains declarations for credits.c
 *//*______________________________________________________________*/
+#include "cprocessing.h"
 
 /*!
-@brief Initialise the background and other objects
+@brief Initialise the back button in credits page
 @param void
 @return void
 *//*______________________________________________________________*/
-void background_init();
+void credits_init();
 
 /*!
-@brief Initialise the background and other objects
+@brief Render the background image
 @param void
 @return void
 *//*______________________________________________________________*/
-void drawbackground();
+void drawCredits();
 
 /*!
-@brief Render codes for the gameplay
+@brief Render the credits
 @param void
 @return void
 *//*______________________________________________________________*/
-void gameplay();
+void drawbackgroundCreds();

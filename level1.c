@@ -1,3 +1,12 @@
+/*!
+@file level1.c
+@author David Tan Wei Jie (tan.d@digipen.edu)
+		Teo Xuan Ni (t.xuanni@digipen.edu)
+		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
+@course GAM
+@section AM Section
+@brief This file contains code for level1 
+*//*______________________________________________________________*/
 #include "cprocessing.h"
 #include <stdio.h>
 #include "player.h"
@@ -25,6 +34,11 @@ CP_Sound trapSFX = NULL;
 float timeElapsed;
 float random_float;
 
+/*!
+@brief Initialise the background and other objects
+@param void
+@return void
+*//*______________________________________________________________*/
 void background_init()
 {
 	backgroundImage = CP_Image_Load("./Assets/background.png");
@@ -43,10 +57,15 @@ void background_init()
 	
 }
 
+/*!
+@brief Initialise the background and other objects
+@param void
+@return void
+*//*______________________________________________________________*/
 void drawbackground()
 {
 	
-	CP_Image_Draw(backgroundImage, 800, 450, 1600, 900, 255);
+	CP_Image_Draw(backgroundImage, 800, 450, 1605, 905, 255);
 	CP_Settings_Fill(COLOR_WHITE);
 	//Death Counter
 	CP_Image_Draw(dead, 60, 60, 80, 60, 255);
@@ -62,9 +81,13 @@ void drawbackground()
 	CP_Font_DrawText(buffer, 100, 140);
 }
 
+/*!
+@brief Render codes for the gameplay
+@param void
+@return void
+*//*______________________________________________________________*/
 void gameplay()
 {
-	timeElapsed = CP_System_GetDt();
 	//Note: Always update first before rendering
 	//Update
 	camera_update(gPlayer.position, gPlayer.size, timeElapsed);
