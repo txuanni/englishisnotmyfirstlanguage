@@ -18,7 +18,7 @@ between pages
 #include "terrain.h"
 #include "credits.h"
 
-#define COLOR_BLACK CP_Color_Create(0, 0, 0, 200)
+#define COLOR_BLACK CP_Color_Create(0, 0, 0, 255)
 #define COLOR_WHITE CP_Color_Create(255, 255, 255, 255)
 CP_Image dead;
 CP_Image cheeseCounterImage;
@@ -26,6 +26,7 @@ CP_Image logoImage = NULL;
 CP_Sound clickSFX = NULL;
 CP_Font font;
 CP_Vector menuButtonPosition;
+CP_Vector menuButton1Position;
 float fadeOutTime;
 float timeElapsed;
 
@@ -47,6 +48,7 @@ void sceneManager_init()
 	credits_init();
 	menu.page = 6;
 	menuButtonPosition = CP_Vector_Set(600, 600);
+	menuButton1Position = CP_Vector_Set(30, 30);
 }
 
 /*!
@@ -78,8 +80,9 @@ void switchPage()
 		collision_check_button1(button[0].Position);
 		collision_check_button2(button[1].Position);
 		collision_check_button5(button[8].Position);
+		collision_check_button6(button[9].Position);
 	}
-	
+
 	//gameplay page
 	else if (menu.page == 1)
 	{
@@ -95,14 +98,19 @@ void switchPage()
 		drawControlButtons();
 		collision_check_button3(button[2].Position);
 	}
-	
+
 	//death page
 	else if (menu.page == 3)
 	{
 		CP_Settings_TextSize(80.0f);
-		CP_Graphics_ClearBackground(COLOR_BLACK);
 		CP_Settings_Fill(COLOR_WHITE);
+		CP_Graphics_DrawRect(menuButton1Position.x, menuButton1Position.y, 350, 80);
+		CP_Graphics_ClearBackground(COLOR_BLACK);
+		CP_Settings_Fill(COLOR_BLACK);
+		CP_Font_DrawText("Back to menu", 60, 90);
+		collision_check_button4(menuButton1Position);
 
+		CP_Settings_Fill(COLOR_WHITE);
 		//Death Counter
 		CP_Image_Draw(dead, 450, 450, 200, 130, 255);
 		char buffer[100];
@@ -157,7 +165,7 @@ void switchPage()
 		if (fadeOutTime < 255.0f)
 		{
 			CP_Graphics_ClearBackground(CP_Color_Create(255, 255, 255, 255));
-			CP_Image_Draw(logoImage, 1600 / 2.0f, 900 / 2.0f, 1525, 445, (int) fadeOutTime);
+			CP_Image_Draw(logoImage, 1600 / 2.0f, 900 / 2.0f, 1525, 445, (int)fadeOutTime);
 			if (CP_Input_MouseClicked())
 			{
 				fadeOutTime = 255;

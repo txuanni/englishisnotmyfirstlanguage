@@ -89,3 +89,9 @@ void collision_check_button4(CP_Vector buttonPosition);
 *//*______________________________________________________________*/
 void collision_check_button5(CP_Vector buttonPosition);
 
+/*!
+@brief Check collision with exit button in main menu
+@param CP_Vector buttonPosition
+@return void
+*//*______________________________________________________________*/
+void collision_check_button6(CP_Vector buttonPosition);

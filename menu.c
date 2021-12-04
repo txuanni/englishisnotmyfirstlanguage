@@ -28,14 +28,17 @@ void menu_init()
 	button->Size = CP_Vector_Set(250, 70);
 	button->Buffer = CP_Vector_Set(125, 35);
 	
-	button[0].Position = CP_Vector_Set(320, 300); //start button
-	button[0].TextPosition = CP_Vector_Set(350, 350); //start text
+	button[0].Position = CP_Vector_Set(320, 250); //start button
+	button[0].TextPosition = CP_Vector_Set(350, 300); //start text
 
-	button[1].Position = CP_Vector_Set(320, 450); //controls button
-	button[1].TextPosition = CP_Vector_Set(350, 500); //controls text
+	button[1].Position = CP_Vector_Set(320, 350); //controls button
+	button[1].TextPosition = CP_Vector_Set(350, 400); //controls text
 
-	button[8].Position = CP_Vector_Set(320, 600); //credits button
-	button[8].TextPosition = CP_Vector_Set(350, 650); //credits text
+	button[8].Position = CP_Vector_Set(320, 450); //credits button
+	button[8].TextPosition = CP_Vector_Set(350, 500); //credits text
+
+	button[9].Position = CP_Vector_Set(320, 550);
+	button[9].TextPosition = CP_Vector_Set(350, 600); //credits text
 }
 
 /*!
@@ -61,10 +64,12 @@ void drawButtons()
 	CP_Graphics_DrawRect(button[0].Position.x, button[0].Position.y, button->Size.x, button->Size.y);
 	CP_Graphics_DrawRect(button[1].Position.x, button[1].Position.y, button->Size.x, button->Size.y);
 	CP_Graphics_DrawRect(button[8].Position.x, button[8].Position.y, button->Size.x, button->Size.y);
+	CP_Graphics_DrawRect(button[9].Position.x, button[9].Position.y, button->Size.x, button->Size.y);
 
 	CP_Settings_Fill(COLOR_BLACK);
 	CP_Settings_TextSize(80.0f);
 	CP_Font_DrawText("Start", button[0].TextPosition.x, button[0].TextPosition.y);
 	CP_Font_DrawText("Controls", button[1].TextPosition.x, button[1].TextPosition.y);
 	CP_Font_DrawText("Credits", button[8].TextPosition.x, button[8].TextPosition.y);
+	CP_Font_DrawText("Exit", button[9].TextPosition.x, button[9].TextPosition.y);
 }

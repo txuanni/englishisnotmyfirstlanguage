@@ -258,3 +258,17 @@ void collision_check_button5(CP_Vector buttonPosition) //credits button collisio
     }
 }
 
+/*!
+@brief Check collision with exit button in main menu and exits the 
+game
+@param CP_Vector buttonPosition
+@return void
+*//*______________________________________________________________*/
+void collision_check_button6(CP_Vector buttonPosition)
+{
+    if (CP_Input_MouseTriggered(MOUSE_BUTTON_1) && is_btn_colliding(CP_Input_GetMouseX(), CP_Input_GetMouseY(), buttonPosition))
+    {
+        CP_Engine_Terminate();
+        CP_Sound_PlayAdvanced(clickSFX, 0.2f, 1.5, FALSE, 0);
+    }
+}
