@@ -1,10 +1,16 @@
-/*!
-@file sceneManager.h
-@author Teo Xuan Ni (t.xuanni@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains declarations for sceneManager.c
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	sceneManager.h
+ * author:	Teo Xuan Ni
+ * email:	t.xuanni@digipen.edu
+*
+ * brief:	This file contains declarations for 
+			* sceneManager.c
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 struct SceneManager
 {
 	int page;

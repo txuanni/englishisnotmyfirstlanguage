@@ -1,11 +1,21 @@
-/*!
-@file traps.c
-@author Teo Xuan Ni (t.xuanni@digipen.edu)
-		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains code for traps position, size and buffer
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	traps.c
+ * author:	Teo Xuan Ni
+			* Qairul Shazriz Bin Shamsul
+ * email:	t.xuanni@digipen.edu
+			* qairulshazriz.b@digipen.edu
+*
+ * brief:	This file contains code for position, size 
+			* and buffer the traps
+			* Xuan Ni - Did the base code for this file
+			* Qairul - Finalised the position for
+			* initialisation of traps
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #include "traps.h"
 
 /*!

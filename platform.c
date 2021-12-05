@@ -1,12 +1,21 @@
-/*!
-@file platform.c
-@author	Teo Xuan Ni (t.xuanni@digipen.edu)
-		David Tan Wei Jie (tan.d@digipen.edu)
-		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains code for running the entire game
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	platform.c
+ * author:	Teo Xuan Ni
+			* Qairul Shazriz Bin Shamsul
+ * email:	t.xuanni@digipen.edu
+			* qairulshazriz.b@digipen.edu
+*
+ * brief:	This file contains code for the position, size 
+			* and buffer of platform
+			* Xuan Ni - Did the base code for this file
+			* Qairul - Finalised the position for
+			* initialisation of platforms
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #include "cprocessing.h"
 #include "platform.h"
 #include <stdio.h>

@@ -1,11 +1,16 @@
-/*!
-@file sceneManager.c
-@author Teo Xuan Ni (t.xuanni@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains code to manage the game scenes and switch
-between pages
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	sceneManager.c
+ * author:	Teo Xuan Ni
+ * email:	t.xuanni@digipen.edu
+*
+ * brief:	This file contains code to manage the game
+			* scenes and switch between pages
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #include <stdio.h>
 #include "sceneManager.h"
 #include "menu.h"

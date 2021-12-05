@@ -1,10 +1,15 @@
-/*!
-@file credits.c
-@author Teo Xuan Ni (t.xuanni@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains code to display credits page
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	credits.c
+ * author:	Teo Xuan Ni
+ * email:	t.xuanni@digipen.edu
+*
+ * brief:	This file contains code to display credits page
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #include "cprocessing.h"
 #include <stdio.h>
 #include "sceneManager.h"

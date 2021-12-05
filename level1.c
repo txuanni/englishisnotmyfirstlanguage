@@ -1,12 +1,24 @@
-/*!
-@file level1.c
-@author David Tan Wei Jie (tan.d@digipen.edu)
-		Teo Xuan Ni (t.xuanni@digipen.edu)
-		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains code for level1 
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	level1.c
+ * author:	Teo Xuan Ni
+			* David Tan Wei Jie
+			* Qairul Shazriz Bin Shamsul
+ * email:	t.xuanni@digipen.edu
+			* tan.d@digipen.edu
+			* qairulshazriz.b@digipen.edu
+*
+ * brief:	This file contains code for level1 
+			* Xuan Ni - the initialisations, drawing of 
+			* background and spawn obstacles
+			* David - collision response after the player
+			* die and score/death system
+			* Qairul - Spawn obstacles and render mouse
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #include "cprocessing.h"
 #include <stdio.h>
 #include "player.h"

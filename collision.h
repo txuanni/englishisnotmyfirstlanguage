@@ -1,12 +1,19 @@
-/*!
-@file collision.c
-@author David Tan Wei Jie (tan.d@digipen.edu)
-        Teo Xuan Ni (t.xuanni@digipen.edu)
-        Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains declarations for collision.c
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	collision.h
+ * author:	David Tan Wei Jie
+            * Teo Xuan Ni
+            * Qairul Shazriz Bin Shamsul
+ * email:	tan.d@digipen.edu
+            * t.xuanni@digipen.edu
+            * qairulshazriz.b@digipen.edu
+*
+ * brief:	This file contains declarations for collision.c
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #include "player.h"
 
 /*!

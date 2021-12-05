@@ -1,12 +1,23 @@
-/*!
-@file collision.c
-@author David Tan Wei Jie (tan.d@digipen.edu)
-        Teo Xuan Ni (t.xuanni@digipen.edu)
-        Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains code to check for collisions
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	collision.c
+ * author:	David Tan Wei Jie
+            * Teo Xuan Ni
+            * Qairul Shazriz Bin Shamsul
+ * email:	tan.d@digipen.edu
+            * t.xuanni@digipen.edu
+            * qairulshazriz.b@digipen.edu
+*
+ * brief:	This file contains code to check for collisions
+            * and give the appopriate responses.
+            * David - Did the AABB collision and the response 
+            * Xuan Ni - Did the button collisions
+            * Qairul - Animation response for the player
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #include <stdio.h>
 #include "cprocessing.h"
 #include "collision.h"

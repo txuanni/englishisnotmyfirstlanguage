@@ -1,10 +1,15 @@
-/*!
-@file camera.c
-@author Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains code to move the camera with the mouse
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	camera.c
+ * author:	Qairul Shazriz Bin Shamsul
+ * email:	qairulshazriz.b@digipen.edu
+*
+ * brief:	This file contains code to move the camera with the mouse
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #include "cprocessing.h"
 #include <stdio.h>
 #include "player.h"

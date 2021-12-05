@@ -1,12 +1,19 @@
-/*!
-@file level1.h
-@author David Tan Wei Jie (tan.d@digipen.edu)
-		Teo Xuan Ni (t.xuanni@digipen.edu)
-		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief Declaration of code for level1.c
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	level1.h
+ * author:	Teo Xuan Ni
+			* David Tan Wei Jie
+			* Qairul Shazriz Bin Shamsul
+ * email:	t.xuanni@digipen.edu
+			* tan.d@digipen.edu
+			* qairulshazriz.b@digipen.edu
+*
+ * brief:	Declaration of code for level1.c
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 
 /*!
 @brief Initialise the background and other objects

@@ -1,12 +1,25 @@
-/*!
-@file player.c
-@author Teo Xuan Ni (t.xuanni@digipen.edu)
-        David Tan Wei Jie (tan.d@digipen.edu)
-        Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains code for player's movement and response
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	player.c
+ * author:	Teo Xuan Ni
+            * David Tan Wei Jie
+            * Qairul Shazriz Bin Shamsul
+ * email:	t.xuanni@digipen.edu
+            * tan.d@digipen.edu
+            * qairulshazriz.b@digipen.edu
+*
+ * brief:	This file contains code to initialise and
+            * move the player as well as responses 
+            * and give the appopriate responses.
+            * Xuan Ni - Did the respawn/die codes
+            * David - Movement code, gravity, player speed 
+            * and death response
+            * Qairul - Animation for the player
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #include <stdio.h>
 #include "collision.h"
 #include "player.h"

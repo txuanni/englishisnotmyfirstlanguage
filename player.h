@@ -1,12 +1,19 @@
-/*!
-@file player.h
-@author Teo Xuan Ni (t.xuanni@digipen.edu)
-		David Tan Wei Jie (tan.d@digipen.edu)
-		Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file contains declarations for player.c
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	player.h
+ * author:	Teo Xuan Ni
+			* David Tan Wei Jie
+			* Qairul Shazriz Bin Shamsul
+ * email:	t.xuanni@digipen.edu
+			* tan.d@digipen.edu
+			* qairulshazriz.b@digipen.edu
+*
+ * brief:	This file contains declarations for player.c
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #ifndef PLAYER_H
 #define PLAYER_H
 

@@ -1,10 +1,16 @@
-/*!
-@file camera.h
-@author Qairul Shazriz Bin Shamsul (qairulshazriz.b@digipen.edu)
-@course GAM
-@section AM Section
-@brief This file declaration code for camera.c
-*//*______________________________________________________________*/
+﻿/*---------------------------------------------------------
+ * file:	camera.h
+ * author:	Qairul Shazriz Bin Shamsul
+ * email:	qairulshazriz.b@digipen.edu
+*
+ * brief:	This file contains code declarations for 
+			* camera.c
+*
+ * documentation link:
+ * https://inside.digipen.edu/main/GSDP:GAM100/CProcessing
+*
+ * Copyright � 2021 DigiPen, All rights reserved.
+* ---------------------------------------------------------*/
 #pragma once
 /*!
 @brief Initialise the camera
