@@ -68,6 +68,7 @@ void drawButtons()
 
 	CP_Settings_Fill(COLOR_BLACK);
 	CP_Settings_TextSize(80.0f);
+	CP_Font_DrawText("Drowning Mouse", 800, 400);
 	CP_Font_DrawText("Start", button[0].TextPosition.x, button[0].TextPosition.y);
 	CP_Font_DrawText("Controls", button[1].TextPosition.x, button[1].TextPosition.y);
 	CP_Font_DrawText("Credits", button[8].TextPosition.x, button[8].TextPosition.y);
